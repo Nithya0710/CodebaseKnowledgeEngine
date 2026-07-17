@@ -1,0 +1,30 @@
+.env
+__pycache__/
+.DS_Store
+venv/
+.venv/
+.ruff_cache/
+*.pyc
+data/repos
+
+# Python artifacts
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+build/
+dist/
+pip-wheel-metadata/
+
+# Tool caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local data/model/vector caches
+.cache/
+chroma/
+chroma_db/
+*.sqlite3
+*.db
