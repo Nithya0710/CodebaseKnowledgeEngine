@@ -1,0 +1,6 @@
+## Day-1
+This project is about a system that ingests 5-10 open-source Python GitHub repositories, indexes them with code-aware chunking and multi-strategy retrieval, and allows engineers to query across the entire codebase in natural language and receive grounded, code-citing answers with exact file paths and line numbers.
+
+Instead of using a simple RAG pipeline, using an advanced one allows the LLM to have better context. In case of character boundaries, it can be modified to allow it to break after functions, instead of cutting off in the middle which doesn't give the LLM the correct context for a given function in a file. With respect to semantic embeddings which will miss identifiers, we can modify BM25 search with a custom tokenizer so that it searches for the exact identifier and splits camel case and snake case identifiers into sub-tokens before indexing. And we already know that relevant code is spread across files, so this system helps us to understand how code connects and where. This is solved by using a dependency graph that maps which files import which and enables context expansion at query time.
+
+This project is built to run fully locally/free via Ollama, with Gemini available as an optional swap-in later.

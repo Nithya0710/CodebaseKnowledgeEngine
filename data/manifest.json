@@ -1,0 +1,58 @@
+[
+  {
+    "repo_name": "flask",
+    "repo_url": "https://github.com/pallets/flask",
+    "local_path": "data/repos/flask",
+    "file_count": 35,
+    "cloned_at": "2026-07-22T14:46:47.879722Z"
+  },
+  {
+    "repo_name": "click",
+    "repo_url": "https://github.com/pallets/click",
+    "local_path": "data/repos/click",
+    "file_count": 32,
+    "cloned_at": "2026-07-22T14:46:47.885343Z"
+  },
+  {
+    "repo_name": "jinja",
+    "repo_url": "https://github.com/pallets/jinja",
+    "local_path": "data/repos/jinja",
+    "file_count": 36,
+    "cloned_at": "2026-07-22T14:46:47.890253Z"
+  },
+  {
+    "repo_name": "itsdangerous",
+    "repo_url": "https://github.com/pallets/itsdangerous",
+    "local_path": "data/repos/itsdangerous",
+    "file_count": 9,
+    "cloned_at": "2026-07-22T14:46:47.893323Z"
+  },
+  {
+    "repo_name": "markupsafe",
+    "repo_url": "https://github.com/pallets/markupsafe",
+    "local_path": "data/repos/markupsafe",
+    "file_count": 5,
+    "cloned_at": "2026-07-22T14:46:47.896766Z"
+  },
+  {
+    "repo_name": "werkzeug",
+    "repo_url": "https://github.com/pallets/werkzeug",
+    "local_path": "data/repos/werkzeug",
+    "file_count": 106,
+    "cloned_at": "2026-07-22T14:46:47.907238Z"
+  },
+  {
+    "repo_name": "requests",
+    "repo_url": "https://github.com/psf/requests",
+    "local_path": "data/repos/requests",
+    "file_count": 22,
+    "cloned_at": "2026-07-22T14:46:47.911324Z"
+  },
+  {
+    "repo_name": "httpx",
+    "repo_url": "https://github.com/encode/httpx",
+    "local_path": "data/repos/httpx",
+    "file_count": 23,
+    "cloned_at": "2026-07-22T14:46:47.915918Z"
+  }
+]

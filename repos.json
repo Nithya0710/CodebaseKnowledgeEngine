@@ -1,0 +1,12 @@
+{
+  "repos": [
+    "https://github.com/pallets/flask",
+    "https://github.com/pallets/click",
+    "https://github.com/pallets/jinja",
+    "https://github.com/pallets/itsdangerous",
+    "https://github.com/pallets/markupsafe",
+    "https://github.com/pallets/werkzeug",
+    "https://github.com/psf/requests",
+    "https://github.com/encode/httpx"
+  ]
+}
