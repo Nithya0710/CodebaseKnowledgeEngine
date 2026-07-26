@@ -56,6 +56,7 @@ def save_manifest(manifests: list[RepoManifest], dest: Path) -> None:
     except OSError as e:
         logger.error(f"Failed to write manifest to {dest}: {e}")
 
+
 def clone_repo(repo_url: str, dest_dir: Path) -> Path:
     """
     Clone a Git repository to the specified directory.
@@ -91,6 +92,7 @@ def clone_repo(repo_url: str, dest_dir: Path) -> Path:
         logger.error(f"Subprocess fallback also failed for {repo_url}: {e}")
         raise
 
+
 def clone_all(repo_urls: list[str], base_dir: Path) -> list[Path]:
     """
     Clone every URL in repo_urls into its own subdirectory under base_dir.
@@ -120,7 +122,9 @@ def clone_all(repo_urls: list[str], base_dir: Path) -> list[Path]:
     save_manifest(manifests, Path("data/manifest.json"))
     return cloned_paths
 
+
 _DEFAULT_SKIP_DIRS = {"test", "tests", "vendor", "node_modules", "__pycache__"}
+
 
 def walk_python_files(root: Path, ignore_patterns: list[str]) -> list[Path]:
     """
@@ -146,6 +150,7 @@ def walk_python_files(root: Path, ignore_patterns: list[str]) -> list[Path]:
             python_files.append(Path(dirpath) / filename)
     return python_files
 
+
 def load_repo_urls(config_path: Path) -> list[str]:
     """Load the list of repo URLs from a JSON config file."""
     try:
@@ -162,15 +167,16 @@ def load_repo_urls(config_path: Path) -> list[str]:
         logger.error(f"Missing 'repos' key in {config_path}")
         return []
 
-if __name__ == "__main__":
+
+# if __name__ == "__main__":
 #     # Example usage for clone_repo() 
 #     clone_repo("https://github.com/Nithya0710/AskMyNotes", Path("data/repos"))
     
-    setup_logging()
+    # setup_logging()
 
-    # # Example usage for clone_all() with repos.json
-    with open("repos.json") as f:
-        repos = json.load(f)["repos"]
+    # # # Example usage for clone_all() with repos.json
+    # with open("repos.json") as f:
+    #     repos = json.load(f)["repos"]
 
-    results = clone_all(repos, Path("data/repos"))
-    print(f"Cloned {len(results)} of {len(repos)} repos.")
+    # results = clone_all(repos, Path("data/repos"))
+    # print(f"Cloned {len(results)} of {len(repos)} repos.")
