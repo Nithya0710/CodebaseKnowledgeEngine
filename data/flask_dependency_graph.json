@@ -1,0 +1,402 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "id": "data/repos/flask/docs/conf.py"
+    },
+    {
+      "id": "data/repos/flask/examples/tutorial/flaskr/auth.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "id": "data/repos/flask/examples/tutorial/flaskr/db.py"
+    },
+    {
+      "id": "data/repos/flask/examples/tutorial/flaskr/__init__.py"
+    },
+    {
+      "id": "data/repos/flask/examples/tutorial/flaskr/blog.py"
+    },
+    {
+      "id": "data/repos/flask/examples/celery/make_celery.py"
+    },
+    {
+      "id": "data/repos/flask/examples/celery/src/task_app/tasks.py"
+    },
+    {
+      "id": "data/repos/flask/examples/celery/src/task_app/__init__.py"
+    },
+    {
+      "id": "data/repos/flask/examples/celery/src/task_app/views.py"
+    },
+    {
+      "id": "data/repos/flask/examples/javascript/js_example/__init__.py"
+    },
+    {
+      "id": "data/repos/flask/examples/javascript/js_example/views.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/logging.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/sessions.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/json/tag.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/config.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/templating.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/ctx.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/app.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/blueprints.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/json/__init__.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/wrappers.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/cli.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/sansio/blueprints.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/sansio/scaffold.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/sansio/app.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/debughelpers.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/typing.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/testing.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/__main__.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/views.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/json/provider.py"
+    }
+  ],
+  "links": [
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/auth.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/auth.py",
+      "target": "data/repos/flask/examples/tutorial/flaskr/db.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/app.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/blueprints.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/config.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/ctx.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/json/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/templating.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/wrappers.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/db.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/__init__.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/blog.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/blog.py",
+      "target": "data/repos/flask/examples/tutorial/flaskr/auth.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/blog.py",
+      "target": "data/repos/flask/examples/tutorial/flaskr/db.py"
+    },
+    {
+      "source": "data/repos/flask/examples/celery/src/task_app/__init__.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/celery/src/task_app/views.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/celery/src/task_app/views.py",
+      "target": "data/repos/flask/examples/celery/src/task_app/tasks.py"
+    },
+    {
+      "source": "data/repos/flask/examples/javascript/js_example/__init__.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/javascript/js_example/views.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/logging.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sessions.py",
+      "target": "data/repos/flask/src/flask/json/tag.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/json/tag.py",
+      "target": "data/repos/flask/src/flask/json/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/templating.py",
+      "target": "data/repos/flask/src/flask/ctx.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/templating.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/templating.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/templating.py",
+      "target": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/ctx.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/ctx.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/ctx.py",
+      "target": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/helpers.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/helpers.py",
+      "target": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/cli.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/ctx.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/sansio/app.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/sessions.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/templating.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/wrappers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/blueprints.py",
+      "target": "data/repos/flask/src/flask/cli.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/blueprints.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/blueprints.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/blueprints.py",
+      "target": "data/repos/flask/src/flask/sansio/blueprints.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/blueprints.py",
+      "target": "data/repos/flask/src/flask/sansio/scaffold.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/json/__init__.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/json/__init__.py",
+      "target": "data/repos/flask/src/flask/json/provider.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/wrappers.py",
+      "target": "data/repos/flask/src/flask/json/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/wrappers.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/wrappers.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/cli.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/cli.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/blueprints.py",
+      "target": "data/repos/flask/src/flask/sansio/scaffold.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/scaffold.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/scaffold.py",
+      "target": "data/repos/flask/src/flask/templating.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/config.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/ctx.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/json/provider.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/logging.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/templating.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/sansio/scaffold.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/debughelpers.py",
+      "target": "data/repos/flask/src/flask/blueprints.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/debughelpers.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/debughelpers.py",
+      "target": "data/repos/flask/src/flask/sansio/app.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/testing.py",
+      "target": "data/repos/flask/src/flask/cli.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/testing.py",
+      "target": "data/repos/flask/src/flask/sessions.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__main__.py",
+      "target": "data/repos/flask/src/flask/cli.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/views.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    }
+  ]
+}

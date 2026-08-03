@@ -82,3 +82,28 @@ def nested_functions_file(tmp_path: Path) -> Path:
     file_path = tmp_path / "nested.py"
     file_path.write_text(content)
     return file_path
+
+
+@pytest.fixture()
+def synthetic_import_graph(tmp_path: Path) -> Path:
+    """
+    A small package with a known import chain:
+        a.py -> b.py -> c.py -> d.py
+        e.py (imports nothing, nothing imports it — fully isolated)
+
+    Expected relationships from a.py:
+      depth=1: {b.py}              (a directly imports b)
+      depth=2: {b.py, c.py}        (a -> b -> c, two hops)
+      e.py should NEVER appear related to a.py at any depth.
+    """
+    pkg = tmp_path / "fakepkg"
+    pkg.mkdir()
+    (pkg / "__init__.py").write_text("")
+
+    (pkg / "a.py").write_text("from . import b\n")
+    (pkg / "b.py").write_text("from . import c\n")
+    (pkg / "c.py").write_text("from . import d\n")
+    (pkg / "d.py").write_text("x = 1\n")
+    (pkg / "e.py").write_text("y = 2\n")
+
+    return tmp_path  # this is repo_root for build_dependency_graph

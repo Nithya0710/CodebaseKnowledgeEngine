@@ -79,7 +79,8 @@ def _extract_docstring_from_statements(container_node, source_code: bytes):
     return string_node
 
 def parse_file(file_path: Path, repo_name: str) -> list[CodeChunk]:
-    """Parse a single Python file into a list of CodeChunk objects.
+    """
+    Parse a single Python file into a list of CodeChunk objects.
 
     Handles syntax errors gracefully — tree-sitter's error recovery
     means malformed files still yield whatever chunks can be extracted
