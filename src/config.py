@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     chroma_persist_dir: str = "./data/chroma"
     log_level: str = "INFO"
     openai_api_key: str = ""
+    embedding_model: str = "all-MiniLM-L6-v2"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
