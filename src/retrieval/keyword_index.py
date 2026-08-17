@@ -35,6 +35,12 @@ class BM25KeywordIndex:
 
     def __init__(self, chunks: list[CodeChunk]):
         self.chunks: list[CodeChunk] = chunks
+        self.bm25 = None
+
+        if not chunks:
+            logger.warning("BM25KeywordIndex constructed with an empty chunk list")
+            return
+
         tokenized_corpus = [split_identifiers(chunk.code_text) for chunk in chunks]
         try:
             self.bm25 = BM25Okapi(tokenized_corpus)
@@ -49,7 +55,7 @@ class BM25KeywordIndex:
         and return the top_k highest-scoring (chunk, score) pairs in
         descending order of relevance.
         """
-        if not self.chunks:
+        if not self.chunks or self.bm25 is None:
             logger.warning("Query attempted on empty BM25 index")
             return []
 
