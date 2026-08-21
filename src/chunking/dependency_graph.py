@@ -1,6 +1,7 @@
 import tree_sitter_python as tspython
 import networkx as nx
 import json
+import statistics
 
 from pathlib import Path
 from tree_sitter import Language, Parser
@@ -137,19 +138,114 @@ def build_dependency_graph(repo_root: Path) -> nx.DiGraph:
     return graph
 
 
-def get_related_files(graph: nx.DiGraph, file_path: str, depth: int = 2) -> list[str]:
+MIN_NODES_FOR_HUB_DETECTION = 20    # below this, the graph is too small for a
+                                    # percentile-based cutoff to be meaningful —
+                                    # hub exclusion is disabled entirely rather
+                                    # than risk excluding too much (or too little)
+                                    # on a handful of files.
+HUB_PERCENTILE = 95    # exclude nodes above this percentile of total degree,
+                       # computed fresh from whatever graph is passed in —
+                       # NOT a fixed absolute number, so this scales correctly
+                       # whether the graph has 50 files or 50,000.
+
+
+def compute_hub_threshold(graph: nx.DiGraph, percentile: int = HUB_PERCENTILE) -> float:
+    """
+    Compute a hub-exclusion degree threshold dynamically from this
+    specific graph's own degree distribution, rather than a hardcoded
+    constant tuned to one fixed corpus. This matters because the
+    project is intended to eventually accept arbitrary user-supplied
+    repos of any size — a threshold tuned to one 268-node graph would
+    either be a no-op on a small repo (nothing reaches that absolute
+    degree) or wildly over-exclusive on a huge one (that degree could
+    be completely normal at scale).
+
+    Returns float('inf') (i.e., exclude nothing) if the graph is too
+    small for a percentile cutoff to be statistically meaningful.
+    """
+    if graph.number_of_nodes() < MIN_NODES_FOR_HUB_DETECTION:
+        logger.info(
+            f"Graph has {graph.number_of_nodes()} nodes (< {MIN_NODES_FOR_HUB_DETECTION}) "
+            "— hub exclusion disabled, too small for a reliable percentile cutoff"
+        )
+        return float("inf")
+
+    degrees = [graph.in_degree(n) + graph.out_degree(n) for n in graph.nodes()]
+    degrees.sort()
+
+    # statistics.quantiles needs at least 2 distinct-ish data points;
+    # guard against a degenerate graph where every node has identical degree
+    if len(set(degrees)) < 2:
+        return float("inf")
+
+    quantile_cuts = statistics.quantiles(degrees, n=100, method="inclusive")
+    threshold = quantile_cuts[percentile - 1]
+
+    logger.info(
+        f"Computed hub threshold: {threshold:.1f} (p{percentile} of degree "
+        f"distribution, {graph.number_of_nodes()} nodes, "
+        f"median={statistics.median(degrees)}, mean={statistics.mean(degrees):.2f})"
+    )
+    return threshold
+
+
+def get_related_files(
+    graph: nx.DiGraph,
+    file_path: str,
+    depth: int = 2,
+    hub_threshold: float | None = None,
+) -> list[str]:
     """
     Return files within `depth` hops of file_path, in either direction
     (files it imports, and files that import it), excluding file_path
     itself.
+
+    Files whose total degree (in-degree + out-degree) exceeds
+    hub_threshold are excluded from being used as BRIDGE nodes for
+    traversal beyond depth 1 — they represent generic, heavily-shared
+    utility modules rather than meaningful architectural dependencies.
+    A hub file can still appear directly as a depth-1 neighbor of
+    file_path, since that IS a real, direct import relationship — it
+    just can't be used as a stepping-stone to reach that hub's OTHER,
+    unrelated importers at depth 2.
+
+    If hub_threshold is None (the default), it's computed dynamically
+    from THIS graph's own degree distribution via compute_hub_threshold
+    — not a fixed constant — so this scales correctly to any repo size,
+    which matters since this project is intended to eventually accept
+    arbitrary user-supplied repos, not just a fixed pre-chosen set.
     """
     if file_path not in graph:
         logger.warning(f"{file_path} not found in dependency graph.")
         return []
 
-    successors = nx.single_source_shortest_path_length(graph, file_path, cutoff=depth)
+    if hub_threshold is None:
+        hub_threshold = compute_hub_threshold(graph)
 
-    predecessors = nx.single_source_shortest_path_length(graph.reverse(), file_path, cutoff=depth)
+    def total_degree(node: str) -> int:
+        return graph.in_degree(node) + graph.out_degree(node)
+
+    def bfs_excluding_hub_bridges(g: nx.DiGraph, source: str) -> dict[str, int]:
+        distances = {source: 0}
+        frontier = [source]
+        current_depth = 0
+
+        while frontier and current_depth < depth:
+            next_frontier = []
+            for node in frontier:
+                if node != source and total_degree(node) > hub_threshold:
+                    continue
+                for neighbor in g.successors(node):
+                    if neighbor not in distances:
+                        distances[neighbor] = current_depth + 1
+                        next_frontier.append(neighbor)
+            frontier = next_frontier
+            current_depth += 1
+
+        return distances
+
+    successors = bfs_excluding_hub_bridges(graph, file_path)
+    predecessors = bfs_excluding_hub_bridges(graph.reverse(), file_path)
 
     related = set(successors.keys()) | set(predecessors.keys())
     related.discard(file_path)
@@ -186,7 +282,7 @@ def load_graph(src: Path) -> nx.DiGraph:
     return nx.DiGraph()
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 #     Example usage
 #     file_path = Path("scratch.py")
 #     imports = parse_imports(file_path)
@@ -198,9 +294,9 @@ if __name__ == "__main__":
     # print(_resolve_import(".helpers", current, repo_root))
 
     # testing for build_dependency_graph()
-    setup_logging()
-    repo_root = Path("data/repos/flask")
-    graph = build_dependency_graph(repo_root)
+    # setup_logging()
+    # repo_root = Path("data/repos/flask")
+    # graph = build_dependency_graph(repo_root)
     # print("Graph has edge from src/flask/app.py to src/flask/helpers.py:", graph.has_edge(str(repo_root / "src/flask/app.py"), str(repo_root / "src/flask/helpers.py")))
     # # Negative check — app.py imports from sansio/app.py, but never
     # # references sansio/blueprints.py or sansio/scaffold.py directly
@@ -225,12 +321,12 @@ if __name__ == "__main__":
     # print(f"depth=2 count: {len(related_2)}")
 
     # testing for save_graph() and load_graph()
-    save_graph(graph, Path("data/flask_dependency_graph.json"))
-    loaded = load_graph(Path("data/flask_dependency_graph.json"))
+    # save_graph(graph, Path("data/flask_dependency_graph.json"))
+    # loaded = load_graph(Path("data/flask_dependency_graph.json"))
 
-    print(f"Original: {graph.number_of_nodes()} nodes, {graph.number_of_edges()} edges")
-    print(f"Loaded:   {loaded.number_of_nodes()} nodes, {loaded.number_of_edges()} edges")
+    # print(f"Original: {graph.number_of_nodes()} nodes, {graph.number_of_edges()} edges")
+    # print(f"Loaded:   {loaded.number_of_nodes()} nodes, {loaded.number_of_edges()} edges")
 
-    file_path = str(repo_root / "src/flask/app.py")
-    print(f"has_edge app->helpers (original): {graph.has_edge(file_path, str(repo_root / 'src/flask/helpers.py'))}")
-    print(f"has_edge app->helpers (loaded):   {loaded.has_edge(file_path, str(repo_root / 'src/flask/helpers.py'))}")
+    # file_path = str(repo_root / "src/flask/app.py")
+    # print(f"has_edge app->helpers (original): {graph.has_edge(file_path, str(repo_root / 'src/flask/helpers.py'))}")
+    # print(f"has_edge app->helpers (loaded):   {loaded.has_edge(file_path, str(repo_root / 'src/flask/helpers.py'))}")

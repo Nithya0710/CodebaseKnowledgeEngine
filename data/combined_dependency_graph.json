@@ -1,0 +1,3377 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "id": "data/repos/flask/docs/conf.py"
+    },
+    {
+      "id": "data/repos/flask/examples/tutorial/flaskr/auth.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "id": "data/repos/flask/examples/tutorial/flaskr/db.py"
+    },
+    {
+      "id": "data/repos/flask/examples/tutorial/flaskr/__init__.py"
+    },
+    {
+      "id": "data/repos/flask/examples/tutorial/flaskr/blog.py"
+    },
+    {
+      "id": "data/repos/flask/examples/celery/make_celery.py"
+    },
+    {
+      "id": "data/repos/flask/examples/celery/src/task_app/tasks.py"
+    },
+    {
+      "id": "data/repos/flask/examples/celery/src/task_app/__init__.py"
+    },
+    {
+      "id": "data/repos/flask/examples/celery/src/task_app/views.py"
+    },
+    {
+      "id": "data/repos/flask/examples/javascript/js_example/__init__.py"
+    },
+    {
+      "id": "data/repos/flask/examples/javascript/js_example/views.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/logging.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/sessions.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/json/tag.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/config.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/templating.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/ctx.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/app.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/blueprints.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/json/__init__.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/wrappers.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/cli.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/sansio/blueprints.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/sansio/scaffold.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/sansio/app.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/debughelpers.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/typing.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/testing.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/__main__.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/views.py"
+    },
+    {
+      "id": "data/repos/flask/src/flask/json/provider.py"
+    },
+    {
+      "id": "data/repos/click/docs/conf.py"
+    },
+    {
+      "id": "data/repos/click/examples/inout/inout.py"
+    },
+    {
+      "id": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "id": "data/repos/click/examples/complex/complex/__init__.py"
+    },
+    {
+      "id": "data/repos/click/examples/complex/complex/cli.py"
+    },
+    {
+      "id": "data/repos/click/examples/complex/complex/commands/cmd_status.py"
+    },
+    {
+      "id": "data/repos/click/examples/complex/complex/commands/__init__.py"
+    },
+    {
+      "id": "data/repos/click/examples/complex/complex/commands/cmd_init.py"
+    },
+    {
+      "id": "data/repos/click/examples/completion/completion.py"
+    },
+    {
+      "id": "data/repos/click/src/click/shell_completion.py"
+    },
+    {
+      "id": "data/repos/click/examples/imagepipe/imagepipe.py"
+    },
+    {
+      "id": "data/repos/click/examples/colors/colors.py"
+    },
+    {
+      "id": "data/repos/click/examples/termui/termui.py"
+    },
+    {
+      "id": "data/repos/click/examples/naval/naval.py"
+    },
+    {
+      "id": "data/repos/click/examples/aliases/aliases.py"
+    },
+    {
+      "id": "data/repos/click/examples/repo/repo.py"
+    },
+    {
+      "id": "data/repos/click/examples/validation/validation.py"
+    },
+    {
+      "id": "data/repos/click/src/click/_winconsole.py"
+    },
+    {
+      "id": "data/repos/click/src/click/_compat.py"
+    },
+    {
+      "id": "data/repos/click/src/click/_textwrap.py"
+    },
+    {
+      "id": "data/repos/click/src/click/globals.py"
+    },
+    {
+      "id": "data/repos/click/src/click/core.py"
+    },
+    {
+      "id": "data/repos/click/src/click/decorators.py"
+    },
+    {
+      "id": "data/repos/click/src/click/exceptions.py"
+    },
+    {
+      "id": "data/repos/click/src/click/formatting.py"
+    },
+    {
+      "id": "data/repos/click/src/click/termui.py"
+    },
+    {
+      "id": "data/repos/click/src/click/types.py"
+    },
+    {
+      "id": "data/repos/click/src/click/utils.py"
+    },
+    {
+      "id": "data/repos/click/src/click/_utils.py"
+    },
+    {
+      "id": "data/repos/click/src/click/parser.py"
+    },
+    {
+      "id": "data/repos/click/src/click/_termui_impl.py"
+    },
+    {
+      "id": "data/repos/click/src/click/testing.py"
+    },
+    {
+      "id": "data/repos/jinja/docs/conf.py"
+    },
+    {
+      "id": "data/repos/jinja/docs/examples/cache_extension.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/__init__.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/ext.py"
+    },
+    {
+      "id": "data/repos/jinja/docs/examples/inline_gettext_extension.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/lexer.py"
+    },
+    {
+      "id": "data/repos/jinja/examples/basic/cycle.py"
+    },
+    {
+      "id": "data/repos/jinja/examples/basic/translate.py"
+    },
+    {
+      "id": "data/repos/jinja/examples/basic/test_filter_and_linestatements.py"
+    },
+    {
+      "id": "data/repos/jinja/examples/basic/test.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/loaders.py"
+    },
+    {
+      "id": "data/repos/jinja/examples/basic/debugger.py"
+    },
+    {
+      "id": "data/repos/jinja/examples/basic/test_loop_filter.py"
+    },
+    {
+      "id": "data/repos/jinja/examples/basic/inheritance.py"
+    },
+    {
+      "id": "data/repos/jinja/scripts/generate_identifier_pattern.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/compiler.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/nodes.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/idtracking.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/optimizer.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/visitor.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/async_utils.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/constants.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/bccache.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/environment.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/runtime.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/parser.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/sandbox.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/debug.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/_identifier.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/defaults.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/filters.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/tests.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/nativetypes.py"
+    },
+    {
+      "id": "data/repos/jinja/src/jinja2/meta.py"
+    },
+    {
+      "id": "data/repos/itsdangerous/docs/conf.py"
+    },
+    {
+      "id": "data/repos/itsdangerous/src/itsdangerous/_json.py"
+    },
+    {
+      "id": "data/repos/itsdangerous/src/itsdangerous/timed.py"
+    },
+    {
+      "id": "data/repos/itsdangerous/src/itsdangerous/encoding.py"
+    },
+    {
+      "id": "data/repos/itsdangerous/src/itsdangerous/exc.py"
+    },
+    {
+      "id": "data/repos/itsdangerous/src/itsdangerous/serializer.py"
+    },
+    {
+      "id": "data/repos/itsdangerous/src/itsdangerous/signer.py"
+    },
+    {
+      "id": "data/repos/itsdangerous/src/itsdangerous/__init__.py"
+    },
+    {
+      "id": "data/repos/itsdangerous/src/itsdangerous/url_safe.py"
+    },
+    {
+      "id": "data/repos/markupsafe/bench.py"
+    },
+    {
+      "id": "data/repos/markupsafe/setup.py"
+    },
+    {
+      "id": "data/repos/markupsafe/docs/conf.py"
+    },
+    {
+      "id": "data/repos/markupsafe/src/markupsafe/__init__.py"
+    },
+    {
+      "id": "data/repos/markupsafe/src/markupsafe/_native.py"
+    },
+    {
+      "id": "data/repos/werkzeug/docs/conf.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/manage-couchy.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/manage-shorty.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/upload.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/manage-plnt.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/manage-cupoftee.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/manage-webpylike.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/manage-i18nurls.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/httpbasicauth.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/manage-simplewiki.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/manage-coolmagic.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/wsecho.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/shorty/models.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/shorty/utils.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/shorty/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/shorty/application.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/shorty/views.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/local.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/routing/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/cupoftee/db.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/cupoftee/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/cupoftee/application.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/cupoftee/network.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/cupoftee/pages.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/cupoftee/utils.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/partial/complex_routing.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/shortly/shortly.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/i18nurls/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/i18nurls/application.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/i18nurls/urls.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/i18nurls/views.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/couchy/models.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/couchy/utils.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/couchy/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/couchy/application.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/couchy/views.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/simplewiki/database.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/simplewiki/utils.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/simplewiki/actions.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/simplewiki/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/simplewiki/application.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/simplewiki/specialpages.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/coolmagic/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/coolmagic/application.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/coolmagic/utils.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/coolmagic/helpers.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/coolmagic/views/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/coolmagic/views/static.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/plnt/sync.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/plnt/database.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/plnt/utils.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/plnt/webapp.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/plnt/views.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/plnt/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/webpylike/example.py"
+    },
+    {
+      "id": "data/repos/werkzeug/examples/webpylike/webpylike.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/user_agent.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/_reloader.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/urls.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/security.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/test.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/sansio/multipart.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/wrappers/request.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/wrappers/response.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/formparser.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/sansio/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/sansio/utils.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/testapp.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/middleware/dispatcher.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/middleware/proxy_fix.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/middleware/http_proxy.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/middleware/__init__.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/middleware/profiler.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/middleware/lint.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/sansio/request.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/sansio/response.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/sansio/http.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/datastructures/cache_control.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/datastructures/auth.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/datastructures/mixins.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/datastructures/range.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/datastructures/accept.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/datastructures/csp.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/datastructures/etag.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/datastructures/file_storage.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/datastructures/headers.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/routing/matcher.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/routing/converters.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/routing/exceptions.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/routing/rules.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/routing/map.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/debug/console.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/debug/repr.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/debug/tbtools.py"
+    },
+    {
+      "id": "data/repos/werkzeug/src/werkzeug/debug/__init__.py"
+    },
+    {
+      "id": "data/repos/requests/setup.py"
+    },
+    {
+      "id": "data/repos/requests/docs/conf.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/__init__.py"
+    },
+    {
+      "id": "data/repos/requests/docs/_themes/flask_theme_support.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/cookies.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/_internal_utils.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/_types.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/compat.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/auth.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/utils.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/sessions.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/adapters.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/exceptions.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/hooks.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/models.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/status_codes.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/structures.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/certs.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/packages.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/__version__.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/api.py"
+    },
+    {
+      "id": "data/repos/requests/src/requests/help.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_decoders.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_exceptions.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_main.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_client.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_status_codes.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_urls.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_urlparse.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_utils.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_api.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_config.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_multipart.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/__init__.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/__version__.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_auth.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_content.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_transports/__init__.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_transports/base.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_transports/default.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_transports/asgi.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_transports/mock.py"
+    },
+    {
+      "id": "data/repos/httpx/httpx/_transports/wsgi.py"
+    }
+  ],
+  "links": [
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/auth.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/auth.py",
+      "target": "data/repos/flask/examples/tutorial/flaskr/db.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/app.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/blueprints.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/config.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/ctx.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/json/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/templating.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__init__.py",
+      "target": "data/repos/flask/src/flask/wrappers.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/db.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/__init__.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/blog.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/blog.py",
+      "target": "data/repos/flask/examples/tutorial/flaskr/auth.py"
+    },
+    {
+      "source": "data/repos/flask/examples/tutorial/flaskr/blog.py",
+      "target": "data/repos/flask/examples/tutorial/flaskr/db.py"
+    },
+    {
+      "source": "data/repos/flask/examples/celery/src/task_app/__init__.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/celery/src/task_app/views.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/celery/src/task_app/views.py",
+      "target": "data/repos/flask/examples/celery/src/task_app/tasks.py"
+    },
+    {
+      "source": "data/repos/flask/examples/javascript/js_example/__init__.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/examples/javascript/js_example/views.py",
+      "target": "data/repos/flask/src/flask/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/logging.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sessions.py",
+      "target": "data/repos/flask/src/flask/json/tag.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/json/tag.py",
+      "target": "data/repos/flask/src/flask/json/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/templating.py",
+      "target": "data/repos/flask/src/flask/ctx.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/templating.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/templating.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/templating.py",
+      "target": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/ctx.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/ctx.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/ctx.py",
+      "target": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/helpers.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/helpers.py",
+      "target": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/cli.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/ctx.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/sansio/app.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/sessions.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/signals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/templating.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/app.py",
+      "target": "data/repos/flask/src/flask/wrappers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/blueprints.py",
+      "target": "data/repos/flask/src/flask/cli.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/blueprints.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/blueprints.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/blueprints.py",
+      "target": "data/repos/flask/src/flask/sansio/blueprints.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/blueprints.py",
+      "target": "data/repos/flask/src/flask/sansio/scaffold.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/json/__init__.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/json/__init__.py",
+      "target": "data/repos/flask/src/flask/json/provider.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/wrappers.py",
+      "target": "data/repos/flask/src/flask/json/__init__.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/wrappers.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/wrappers.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/cli.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/cli.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/blueprints.py",
+      "target": "data/repos/flask/src/flask/sansio/scaffold.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/scaffold.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/scaffold.py",
+      "target": "data/repos/flask/src/flask/templating.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/config.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/ctx.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/helpers.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/json/provider.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/logging.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/templating.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/sansio/app.py",
+      "target": "data/repos/flask/src/flask/sansio/scaffold.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/debughelpers.py",
+      "target": "data/repos/flask/src/flask/blueprints.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/debughelpers.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/debughelpers.py",
+      "target": "data/repos/flask/src/flask/sansio/app.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/testing.py",
+      "target": "data/repos/flask/src/flask/cli.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/testing.py",
+      "target": "data/repos/flask/src/flask/sessions.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/__main__.py",
+      "target": "data/repos/flask/src/flask/cli.py"
+    },
+    {
+      "source": "data/repos/flask/src/flask/views.py",
+      "target": "data/repos/flask/src/flask/globals.py"
+    },
+    {
+      "source": "data/repos/click/examples/inout/inout.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/src/click/__init__.py",
+      "target": "data/repos/click/src/click/core.py"
+    },
+    {
+      "source": "data/repos/click/src/click/__init__.py",
+      "target": "data/repos/click/src/click/decorators.py"
+    },
+    {
+      "source": "data/repos/click/src/click/__init__.py",
+      "target": "data/repos/click/src/click/exceptions.py"
+    },
+    {
+      "source": "data/repos/click/src/click/__init__.py",
+      "target": "data/repos/click/src/click/formatting.py"
+    },
+    {
+      "source": "data/repos/click/src/click/__init__.py",
+      "target": "data/repos/click/src/click/globals.py"
+    },
+    {
+      "source": "data/repos/click/src/click/__init__.py",
+      "target": "data/repos/click/src/click/termui.py"
+    },
+    {
+      "source": "data/repos/click/src/click/__init__.py",
+      "target": "data/repos/click/src/click/types.py"
+    },
+    {
+      "source": "data/repos/click/src/click/__init__.py",
+      "target": "data/repos/click/src/click/utils.py"
+    },
+    {
+      "source": "data/repos/click/examples/complex/complex/cli.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/examples/complex/complex/commands/cmd_status.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/examples/complex/complex/commands/cmd_init.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/examples/completion/completion.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/examples/completion/completion.py",
+      "target": "data/repos/click/src/click/shell_completion.py"
+    },
+    {
+      "source": "data/repos/click/src/click/shell_completion.py",
+      "target": "data/repos/click/src/click/core.py"
+    },
+    {
+      "source": "data/repos/click/src/click/shell_completion.py",
+      "target": "data/repos/click/src/click/utils.py"
+    },
+    {
+      "source": "data/repos/click/examples/imagepipe/imagepipe.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/examples/colors/colors.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/examples/termui/termui.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/examples/naval/naval.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/examples/aliases/aliases.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/examples/repo/repo.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/examples/validation/validation.py",
+      "target": "data/repos/click/src/click/__init__.py"
+    },
+    {
+      "source": "data/repos/click/src/click/_winconsole.py",
+      "target": "data/repos/click/src/click/_compat.py"
+    },
+    {
+      "source": "data/repos/click/src/click/_textwrap.py",
+      "target": "data/repos/click/src/click/_compat.py"
+    },
+    {
+      "source": "data/repos/click/src/click/core.py",
+      "target": "data/repos/click/src/click/types.py"
+    },
+    {
+      "source": "data/repos/click/src/click/core.py",
+      "target": "data/repos/click/src/click/_utils.py"
+    },
+    {
+      "source": "data/repos/click/src/click/core.py",
+      "target": "data/repos/click/src/click/exceptions.py"
+    },
+    {
+      "source": "data/repos/click/src/click/core.py",
+      "target": "data/repos/click/src/click/formatting.py"
+    },
+    {
+      "source": "data/repos/click/src/click/core.py",
+      "target": "data/repos/click/src/click/globals.py"
+    },
+    {
+      "source": "data/repos/click/src/click/core.py",
+      "target": "data/repos/click/src/click/parser.py"
+    },
+    {
+      "source": "data/repos/click/src/click/core.py",
+      "target": "data/repos/click/src/click/termui.py"
+    },
+    {
+      "source": "data/repos/click/src/click/core.py",
+      "target": "data/repos/click/src/click/utils.py"
+    },
+    {
+      "source": "data/repos/click/src/click/decorators.py",
+      "target": "data/repos/click/src/click/core.py"
+    },
+    {
+      "source": "data/repos/click/src/click/decorators.py",
+      "target": "data/repos/click/src/click/globals.py"
+    },
+    {
+      "source": "data/repos/click/src/click/decorators.py",
+      "target": "data/repos/click/src/click/utils.py"
+    },
+    {
+      "source": "data/repos/click/src/click/exceptions.py",
+      "target": "data/repos/click/src/click/_compat.py"
+    },
+    {
+      "source": "data/repos/click/src/click/exceptions.py",
+      "target": "data/repos/click/src/click/globals.py"
+    },
+    {
+      "source": "data/repos/click/src/click/exceptions.py",
+      "target": "data/repos/click/src/click/utils.py"
+    },
+    {
+      "source": "data/repos/click/src/click/formatting.py",
+      "target": "data/repos/click/src/click/_compat.py"
+    },
+    {
+      "source": "data/repos/click/src/click/formatting.py",
+      "target": "data/repos/click/src/click/parser.py"
+    },
+    {
+      "source": "data/repos/click/src/click/termui.py",
+      "target": "data/repos/click/src/click/_compat.py"
+    },
+    {
+      "source": "data/repos/click/src/click/termui.py",
+      "target": "data/repos/click/src/click/exceptions.py"
+    },
+    {
+      "source": "data/repos/click/src/click/termui.py",
+      "target": "data/repos/click/src/click/globals.py"
+    },
+    {
+      "source": "data/repos/click/src/click/termui.py",
+      "target": "data/repos/click/src/click/types.py"
+    },
+    {
+      "source": "data/repos/click/src/click/termui.py",
+      "target": "data/repos/click/src/click/utils.py"
+    },
+    {
+      "source": "data/repos/click/src/click/types.py",
+      "target": "data/repos/click/src/click/_compat.py"
+    },
+    {
+      "source": "data/repos/click/src/click/types.py",
+      "target": "data/repos/click/src/click/exceptions.py"
+    },
+    {
+      "source": "data/repos/click/src/click/types.py",
+      "target": "data/repos/click/src/click/utils.py"
+    },
+    {
+      "source": "data/repos/click/src/click/utils.py",
+      "target": "data/repos/click/src/click/_compat.py"
+    },
+    {
+      "source": "data/repos/click/src/click/utils.py",
+      "target": "data/repos/click/src/click/globals.py"
+    },
+    {
+      "source": "data/repos/click/src/click/parser.py",
+      "target": "data/repos/click/src/click/_utils.py"
+    },
+    {
+      "source": "data/repos/click/src/click/parser.py",
+      "target": "data/repos/click/src/click/exceptions.py"
+    },
+    {
+      "source": "data/repos/click/src/click/_termui_impl.py",
+      "target": "data/repos/click/src/click/_compat.py"
+    },
+    {
+      "source": "data/repos/click/src/click/_termui_impl.py",
+      "target": "data/repos/click/src/click/exceptions.py"
+    },
+    {
+      "source": "data/repos/click/src/click/_termui_impl.py",
+      "target": "data/repos/click/src/click/utils.py"
+    },
+    {
+      "source": "data/repos/click/src/click/testing.py",
+      "target": "data/repos/click/src/click/_compat.py"
+    },
+    {
+      "source": "data/repos/click/src/click/testing.py",
+      "target": "data/repos/click/src/click/formatting.py"
+    },
+    {
+      "source": "data/repos/click/src/click/testing.py",
+      "target": "data/repos/click/src/click/termui.py"
+    },
+    {
+      "source": "data/repos/click/src/click/testing.py",
+      "target": "data/repos/click/src/click/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/docs/examples/cache_extension.py",
+      "target": "data/repos/jinja/src/jinja2/__init__.py"
+    },
+    {
+      "source": "data/repos/jinja/docs/examples/cache_extension.py",
+      "target": "data/repos/jinja/src/jinja2/ext.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/__init__.py",
+      "target": "data/repos/jinja/src/jinja2/bccache.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/__init__.py",
+      "target": "data/repos/jinja/src/jinja2/environment.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/__init__.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/__init__.py",
+      "target": "data/repos/jinja/src/jinja2/loaders.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/__init__.py",
+      "target": "data/repos/jinja/src/jinja2/runtime.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/__init__.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/ext.py",
+      "target": "data/repos/jinja/src/jinja2/defaults.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/ext.py",
+      "target": "data/repos/jinja/src/jinja2/nodes.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/ext.py",
+      "target": "data/repos/jinja/src/jinja2/environment.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/ext.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/ext.py",
+      "target": "data/repos/jinja/src/jinja2/runtime.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/ext.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/docs/examples/inline_gettext_extension.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/docs/examples/inline_gettext_extension.py",
+      "target": "data/repos/jinja/src/jinja2/ext.py"
+    },
+    {
+      "source": "data/repos/jinja/docs/examples/inline_gettext_extension.py",
+      "target": "data/repos/jinja/src/jinja2/lexer.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/lexer.py",
+      "target": "data/repos/jinja/src/jinja2/_identifier.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/lexer.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/lexer.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/examples/basic/cycle.py",
+      "target": "data/repos/jinja/src/jinja2/__init__.py"
+    },
+    {
+      "source": "data/repos/jinja/examples/basic/translate.py",
+      "target": "data/repos/jinja/src/jinja2/__init__.py"
+    },
+    {
+      "source": "data/repos/jinja/examples/basic/test_filter_and_linestatements.py",
+      "target": "data/repos/jinja/src/jinja2/__init__.py"
+    },
+    {
+      "source": "data/repos/jinja/examples/basic/test.py",
+      "target": "data/repos/jinja/src/jinja2/__init__.py"
+    },
+    {
+      "source": "data/repos/jinja/examples/basic/test.py",
+      "target": "data/repos/jinja/src/jinja2/loaders.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/loaders.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/loaders.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/examples/basic/debugger.py",
+      "target": "data/repos/jinja/src/jinja2/__init__.py"
+    },
+    {
+      "source": "data/repos/jinja/examples/basic/debugger.py",
+      "target": "data/repos/jinja/src/jinja2/loaders.py"
+    },
+    {
+      "source": "data/repos/jinja/examples/basic/test_loop_filter.py",
+      "target": "data/repos/jinja/src/jinja2/__init__.py"
+    },
+    {
+      "source": "data/repos/jinja/examples/basic/inheritance.py",
+      "target": "data/repos/jinja/src/jinja2/__init__.py"
+    },
+    {
+      "source": "data/repos/jinja/examples/basic/inheritance.py",
+      "target": "data/repos/jinja/src/jinja2/loaders.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/compiler.py",
+      "target": "data/repos/jinja/src/jinja2/nodes.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/compiler.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/compiler.py",
+      "target": "data/repos/jinja/src/jinja2/idtracking.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/compiler.py",
+      "target": "data/repos/jinja/src/jinja2/optimizer.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/compiler.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/compiler.py",
+      "target": "data/repos/jinja/src/jinja2/visitor.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/nodes.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/idtracking.py",
+      "target": "data/repos/jinja/src/jinja2/nodes.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/idtracking.py",
+      "target": "data/repos/jinja/src/jinja2/visitor.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/optimizer.py",
+      "target": "data/repos/jinja/src/jinja2/nodes.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/optimizer.py",
+      "target": "data/repos/jinja/src/jinja2/visitor.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/visitor.py",
+      "target": "data/repos/jinja/src/jinja2/nodes.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/async_utils.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/environment.py",
+      "target": "data/repos/jinja/src/jinja2/nodes.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/environment.py",
+      "target": "data/repos/jinja/src/jinja2/compiler.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/environment.py",
+      "target": "data/repos/jinja/src/jinja2/defaults.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/environment.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/environment.py",
+      "target": "data/repos/jinja/src/jinja2/lexer.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/environment.py",
+      "target": "data/repos/jinja/src/jinja2/parser.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/environment.py",
+      "target": "data/repos/jinja/src/jinja2/runtime.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/environment.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/runtime.py",
+      "target": "data/repos/jinja/src/jinja2/async_utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/runtime.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/runtime.py",
+      "target": "data/repos/jinja/src/jinja2/nodes.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/runtime.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/parser.py",
+      "target": "data/repos/jinja/src/jinja2/nodes.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/parser.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/parser.py",
+      "target": "data/repos/jinja/src/jinja2/lexer.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/sandbox.py",
+      "target": "data/repos/jinja/src/jinja2/environment.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/sandbox.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/sandbox.py",
+      "target": "data/repos/jinja/src/jinja2/runtime.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/debug.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/debug.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/defaults.py",
+      "target": "data/repos/jinja/src/jinja2/filters.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/defaults.py",
+      "target": "data/repos/jinja/src/jinja2/tests.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/defaults.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/filters.py",
+      "target": "data/repos/jinja/src/jinja2/async_utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/filters.py",
+      "target": "data/repos/jinja/src/jinja2/exceptions.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/filters.py",
+      "target": "data/repos/jinja/src/jinja2/runtime.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/filters.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/tests.py",
+      "target": "data/repos/jinja/src/jinja2/runtime.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/tests.py",
+      "target": "data/repos/jinja/src/jinja2/utils.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/nativetypes.py",
+      "target": "data/repos/jinja/src/jinja2/nodes.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/nativetypes.py",
+      "target": "data/repos/jinja/src/jinja2/compiler.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/nativetypes.py",
+      "target": "data/repos/jinja/src/jinja2/environment.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/meta.py",
+      "target": "data/repos/jinja/src/jinja2/nodes.py"
+    },
+    {
+      "source": "data/repos/jinja/src/jinja2/meta.py",
+      "target": "data/repos/jinja/src/jinja2/compiler.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/timed.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/encoding.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/timed.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/exc.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/timed.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/serializer.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/timed.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/signer.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/encoding.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/exc.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/serializer.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/encoding.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/serializer.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/exc.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/serializer.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/signer.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/signer.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/encoding.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/signer.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/exc.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/__init__.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/encoding.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/__init__.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/exc.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/__init__.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/serializer.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/__init__.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/signer.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/__init__.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/timed.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/__init__.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/url_safe.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/url_safe.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/_json.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/url_safe.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/encoding.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/url_safe.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/exc.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/url_safe.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/serializer.py"
+    },
+    {
+      "source": "data/repos/itsdangerous/src/itsdangerous/url_safe.py",
+      "target": "data/repos/itsdangerous/src/itsdangerous/timed.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/manage-couchy.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/serving.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/serving.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/serving.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/serving.py",
+      "target": "data/repos/werkzeug/src/werkzeug/urls.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/manage-shorty.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/upload.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/upload.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/upload.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/request.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/response.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wsgi.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wsgi.py",
+      "target": "data/repos/werkzeug/src/werkzeug/sansio/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wsgi.py",
+      "target": "data/repos/werkzeug/src/werkzeug/sansio/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/manage-plnt.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/manage-cupoftee.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/manage-webpylike.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/manage-i18nurls.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/httpbasicauth.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/httpbasicauth.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/manage-simplewiki.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/manage-coolmagic.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/wsecho.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/wsecho.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/wsecho.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/exceptions.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/models.py",
+      "target": "data/repos/werkzeug/examples/shorty/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/local.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/application.py",
+      "target": "data/repos/werkzeug/examples/shorty/views.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/application.py",
+      "target": "data/repos/werkzeug/examples/shorty/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py",
+      "target": "data/repos/werkzeug/src/werkzeug/security.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/views.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/views.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/views.py",
+      "target": "data/repos/werkzeug/examples/shorty/models.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shorty/views.py",
+      "target": "data/repos/werkzeug/examples/shorty/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/local.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/converters.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/map.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/matcher.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/rules.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/security.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/__init__.py",
+      "target": "data/repos/werkzeug/examples/cupoftee/application.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/application.py",
+      "target": "data/repos/werkzeug/examples/cupoftee/db.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/application.py",
+      "target": "data/repos/werkzeug/examples/cupoftee/network.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/network.py",
+      "target": "data/repos/werkzeug/examples/cupoftee/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/pages.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/pages.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/pages.py",
+      "target": "data/repos/werkzeug/examples/cupoftee/application.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/cupoftee/pages.py",
+      "target": "data/repos/werkzeug/examples/cupoftee/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/partial/complex_routing.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shortly/shortly.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shortly/shortly.py",
+      "target": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shortly/shortly.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shortly/shortly.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/shortly/shortly.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/i18nurls/__init__.py",
+      "target": "data/repos/werkzeug/examples/i18nurls/application.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/i18nurls/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/i18nurls/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/i18nurls/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/i18nurls/application.py",
+      "target": "data/repos/werkzeug/examples/i18nurls/urls.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/i18nurls/urls.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/i18nurls/views.py",
+      "target": "data/repos/werkzeug/examples/i18nurls/application.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/models.py",
+      "target": "data/repos/werkzeug/examples/couchy/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/local.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/application.py",
+      "target": "data/repos/werkzeug/examples/couchy/views.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/application.py",
+      "target": "data/repos/werkzeug/examples/couchy/models.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/application.py",
+      "target": "data/repos/werkzeug/examples/couchy/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/views.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/views.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/views.py",
+      "target": "data/repos/werkzeug/examples/couchy/models.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/couchy/views.py",
+      "target": "data/repos/werkzeug/examples/couchy/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/database.py",
+      "target": "data/repos/werkzeug/examples/simplewiki/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/local.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/actions.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/actions.py",
+      "target": "data/repos/werkzeug/examples/simplewiki/database.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/actions.py",
+      "target": "data/repos/werkzeug/examples/simplewiki/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/__init__.py",
+      "target": "data/repos/werkzeug/examples/simplewiki/application.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/application.py",
+      "target": "data/repos/werkzeug/examples/simplewiki/actions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/application.py",
+      "target": "data/repos/werkzeug/examples/simplewiki/database.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/application.py",
+      "target": "data/repos/werkzeug/examples/simplewiki/specialpages.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/application.py",
+      "target": "data/repos/werkzeug/examples/simplewiki/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/specialpages.py",
+      "target": "data/repos/werkzeug/examples/simplewiki/actions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/specialpages.py",
+      "target": "data/repos/werkzeug/examples/simplewiki/database.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/simplewiki/specialpages.py",
+      "target": "data/repos/werkzeug/examples/simplewiki/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/coolmagic/__init__.py",
+      "target": "data/repos/werkzeug/examples/coolmagic/application.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/coolmagic/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/coolmagic/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/coolmagic/application.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/coolmagic/application.py",
+      "target": "data/repos/werkzeug/examples/coolmagic/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/coolmagic/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/local.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/coolmagic/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/coolmagic/helpers.py",
+      "target": "data/repos/werkzeug/examples/coolmagic/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/sync.py",
+      "target": "data/repos/werkzeug/examples/plnt/database.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/sync.py",
+      "target": "data/repos/werkzeug/examples/plnt/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/database.py",
+      "target": "data/repos/werkzeug/examples/plnt/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/local.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/webapp.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/webapp.py",
+      "target": "data/repos/werkzeug/src/werkzeug/middleware/shared_data.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/webapp.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/webapp.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/webapp.py",
+      "target": "data/repos/werkzeug/examples/plnt/views.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/webapp.py",
+      "target": "data/repos/werkzeug/examples/plnt/database.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/webapp.py",
+      "target": "data/repos/werkzeug/examples/plnt/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/views.py",
+      "target": "data/repos/werkzeug/examples/plnt/database.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/views.py",
+      "target": "data/repos/werkzeug/examples/plnt/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/plnt/__init__.py",
+      "target": "data/repos/werkzeug/examples/plnt/webapp.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/webpylike/example.py",
+      "target": "data/repos/werkzeug/examples/webpylike/webpylike.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/webpylike/webpylike.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/examples/webpylike/webpylike.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/_reloader.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/accept.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/auth.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/cache_control.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/csp.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/etag.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/file_storage.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/headers.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/mixins.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/range.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/urls.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/serving.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/test.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/test.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/test.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/test.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/test.py",
+      "target": "data/repos/werkzeug/src/werkzeug/sansio/multipart.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/test.py",
+      "target": "data/repos/werkzeug/src/werkzeug/urls.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/test.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/test.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/request.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/test.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/response.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/test.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/http.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/http.py",
+      "target": "data/repos/werkzeug/src/werkzeug/sansio/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/multipart.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/multipart.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/multipart.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/formparser.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/sansio/request.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/response.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/response.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/response.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/response.py",
+      "target": "data/repos/werkzeug/src/werkzeug/sansio/response.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/response.py",
+      "target": "data/repos/werkzeug/src/werkzeug/urls.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/response.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/wrappers/response.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/formparser.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/formparser.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/formparser.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/formparser.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/formparser.py",
+      "target": "data/repos/werkzeug/src/werkzeug/sansio/multipart.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/formparser.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/utils.py",
+      "target": "data/repos/werkzeug/src/werkzeug/urls.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/testapp.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/request.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/testapp.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/response.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/middleware/proxy_fix.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/middleware/http_proxy.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/middleware/http_proxy.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/middleware/http_proxy.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/middleware/lint.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/middleware/lint.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/middleware/lint.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/user_agent.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/sansio/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/request.py",
+      "target": "data/repos/werkzeug/src/werkzeug/sansio/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/response.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/response.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/cache_control.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/response.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/response.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/http.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/sansio/http.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/cache_control.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/cache_control.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/mixins.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/cache_control.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/auth.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/auth.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/mixins.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/mixins.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/range.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/range.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/accept.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/accept.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/csp.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/file_storage.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/file_storage.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/file_storage.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/headers.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/file_storage.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/headers.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/headers.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/headers.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/headers.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/mixins.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/datastructures/headers.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/structures.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/matcher.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/converters.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/matcher.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/matcher.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/rules.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/exceptions.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/exceptions.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/rules.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/rules.py",
+      "target": "data/repos/werkzeug/src/werkzeug/urls.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/rules.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/converters.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/map.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/map.py",
+      "target": "data/repos/werkzeug/src/werkzeug/datastructures/__init__.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/map.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/map.py",
+      "target": "data/repos/werkzeug/src/werkzeug/urls.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/map.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/request.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/map.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wsgi.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/map.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/converters.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/map.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/map.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/matcher.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/routing/map.py",
+      "target": "data/repos/werkzeug/src/werkzeug/routing/rules.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/console.py",
+      "target": "data/repos/werkzeug/src/werkzeug/debug/repr.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/tbtools.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/tbtools.py",
+      "target": "data/repos/werkzeug/src/werkzeug/debug/console.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/_internal.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/exceptions.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/http.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/sansio/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/utils.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/request.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/wrappers/response.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/debug/console.py"
+    },
+    {
+      "source": "data/repos/werkzeug/src/werkzeug/debug/__init__.py",
+      "target": "data/repos/werkzeug/src/werkzeug/debug/tbtools.py"
+    },
+    {
+      "source": "data/repos/requests/docs/conf.py",
+      "target": "data/repos/requests/src/requests/__init__.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/__init__.py",
+      "target": "data/repos/requests/src/requests/exceptions.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/__init__.py",
+      "target": "data/repos/requests/src/requests/packages.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/__init__.py",
+      "target": "data/repos/requests/src/requests/__version__.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/__init__.py",
+      "target": "data/repos/requests/src/requests/api.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/__init__.py",
+      "target": "data/repos/requests/src/requests/models.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/__init__.py",
+      "target": "data/repos/requests/src/requests/sessions.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/__init__.py",
+      "target": "data/repos/requests/src/requests/status_codes.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/cookies.py",
+      "target": "data/repos/requests/src/requests/_internal_utils.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/cookies.py",
+      "target": "data/repos/requests/src/requests/_types.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/cookies.py",
+      "target": "data/repos/requests/src/requests/compat.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/_internal_utils.py",
+      "target": "data/repos/requests/src/requests/compat.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/auth.py",
+      "target": "data/repos/requests/src/requests/_internal_utils.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/auth.py",
+      "target": "data/repos/requests/src/requests/compat.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/auth.py",
+      "target": "data/repos/requests/src/requests/cookies.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/auth.py",
+      "target": "data/repos/requests/src/requests/utils.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/utils.py",
+      "target": "data/repos/requests/src/requests/certs.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/utils.py",
+      "target": "data/repos/requests/src/requests/__version__.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/utils.py",
+      "target": "data/repos/requests/src/requests/_internal_utils.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/utils.py",
+      "target": "data/repos/requests/src/requests/_types.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/utils.py",
+      "target": "data/repos/requests/src/requests/compat.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/utils.py",
+      "target": "data/repos/requests/src/requests/cookies.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/utils.py",
+      "target": "data/repos/requests/src/requests/exceptions.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/utils.py",
+      "target": "data/repos/requests/src/requests/structures.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/_internal_utils.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/_types.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/adapters.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/auth.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/compat.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/cookies.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/exceptions.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/hooks.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/models.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/status_codes.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/structures.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/sessions.py",
+      "target": "data/repos/requests/src/requests/utils.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/adapters.py",
+      "target": "data/repos/requests/src/requests/auth.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/adapters.py",
+      "target": "data/repos/requests/src/requests/compat.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/adapters.py",
+      "target": "data/repos/requests/src/requests/cookies.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/adapters.py",
+      "target": "data/repos/requests/src/requests/exceptions.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/adapters.py",
+      "target": "data/repos/requests/src/requests/models.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/adapters.py",
+      "target": "data/repos/requests/src/requests/structures.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/adapters.py",
+      "target": "data/repos/requests/src/requests/utils.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/adapters.py",
+      "target": "data/repos/requests/src/requests/_types.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/exceptions.py",
+      "target": "data/repos/requests/src/requests/compat.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/models.py",
+      "target": "data/repos/requests/src/requests/_internal_utils.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/models.py",
+      "target": "data/repos/requests/src/requests/auth.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/models.py",
+      "target": "data/repos/requests/src/requests/compat.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/models.py",
+      "target": "data/repos/requests/src/requests/cookies.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/models.py",
+      "target": "data/repos/requests/src/requests/exceptions.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/models.py",
+      "target": "data/repos/requests/src/requests/hooks.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/models.py",
+      "target": "data/repos/requests/src/requests/status_codes.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/models.py",
+      "target": "data/repos/requests/src/requests/structures.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/models.py",
+      "target": "data/repos/requests/src/requests/utils.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/status_codes.py",
+      "target": "data/repos/requests/src/requests/structures.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/structures.py",
+      "target": "data/repos/requests/src/requests/compat.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/packages.py",
+      "target": "data/repos/requests/src/requests/compat.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/api.py",
+      "target": "data/repos/requests/src/requests/sessions.py"
+    },
+    {
+      "source": "data/repos/requests/src/requests/api.py",
+      "target": "data/repos/requests/src/requests/models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_decoders.py",
+      "target": "data/repos/httpx/httpx/_exceptions.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_main.py",
+      "target": "data/repos/httpx/httpx/_client.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_main.py",
+      "target": "data/repos/httpx/httpx/_exceptions.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_main.py",
+      "target": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_main.py",
+      "target": "data/repos/httpx/httpx/_status_codes.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/__version__.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/_auth.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/_config.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/_decoders.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/_exceptions.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/_status_codes.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/_transports/base.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/_transports/default.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/_urls.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_client.py",
+      "target": "data/repos/httpx/httpx/_utils.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_models.py",
+      "target": "data/repos/httpx/httpx/_content.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_models.py",
+      "target": "data/repos/httpx/httpx/_decoders.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_models.py",
+      "target": "data/repos/httpx/httpx/_exceptions.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_models.py",
+      "target": "data/repos/httpx/httpx/_multipart.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_models.py",
+      "target": "data/repos/httpx/httpx/_status_codes.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_models.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_models.py",
+      "target": "data/repos/httpx/httpx/_urls.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_models.py",
+      "target": "data/repos/httpx/httpx/_utils.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_urls.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_urls.py",
+      "target": "data/repos/httpx/httpx/_urlparse.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_urls.py",
+      "target": "data/repos/httpx/httpx/_utils.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_urlparse.py",
+      "target": "data/repos/httpx/httpx/_exceptions.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_utils.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_api.py",
+      "target": "data/repos/httpx/httpx/_client.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_api.py",
+      "target": "data/repos/httpx/httpx/_config.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_api.py",
+      "target": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_api.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_api.py",
+      "target": "data/repos/httpx/httpx/_urls.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_config.py",
+      "target": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_config.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_config.py",
+      "target": "data/repos/httpx/httpx/_urls.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_multipart.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_multipart.py",
+      "target": "data/repos/httpx/httpx/_utils.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/__version__.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/_api.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/_auth.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/_client.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/_config.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/_content.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/_exceptions.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/_status_codes.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/_transports/__init__.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/__init__.py",
+      "target": "data/repos/httpx/httpx/_urls.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_auth.py",
+      "target": "data/repos/httpx/httpx/_exceptions.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_auth.py",
+      "target": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_auth.py",
+      "target": "data/repos/httpx/httpx/_utils.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_content.py",
+      "target": "data/repos/httpx/httpx/_exceptions.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_content.py",
+      "target": "data/repos/httpx/httpx/_multipart.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_content.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_content.py",
+      "target": "data/repos/httpx/httpx/_utils.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/__init__.py",
+      "target": "data/repos/httpx/httpx/_transports/asgi.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/__init__.py",
+      "target": "data/repos/httpx/httpx/_transports/base.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/__init__.py",
+      "target": "data/repos/httpx/httpx/_transports/default.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/__init__.py",
+      "target": "data/repos/httpx/httpx/_transports/mock.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/__init__.py",
+      "target": "data/repos/httpx/httpx/_transports/wsgi.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/base.py",
+      "target": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/default.py",
+      "target": "data/repos/httpx/httpx/_config.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/default.py",
+      "target": "data/repos/httpx/httpx/_exceptions.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/default.py",
+      "target": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/default.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/default.py",
+      "target": "data/repos/httpx/httpx/_urls.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/default.py",
+      "target": "data/repos/httpx/httpx/_transports/base.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/asgi.py",
+      "target": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/asgi.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/asgi.py",
+      "target": "data/repos/httpx/httpx/_transports/base.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/mock.py",
+      "target": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/mock.py",
+      "target": "data/repos/httpx/httpx/_transports/base.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/wsgi.py",
+      "target": "data/repos/httpx/httpx/_models.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/wsgi.py",
+      "target": "data/repos/httpx/httpx/_types.py"
+    },
+    {
+      "source": "data/repos/httpx/httpx/_transports/wsgi.py",
+      "target": "data/repos/httpx/httpx/_transports/base.py"
+    }
+  ]
+}
