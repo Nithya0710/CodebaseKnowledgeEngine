@@ -1,0 +1,212 @@
+{
+  "Where is authentication middleware defined and what does it check?": [
+    {
+      "name": "BaseClient.auth",
+      "file_path": "data/repos/httpx/httpx/_client.py",
+      "start_line": 273,
+      "end_line": 281,
+      "code_text": "def auth(self) -> Auth | None:\n        \"\"\"\n        Authentication class used when none is passed at the request-level.\n\n        See also [Authentication][0].\n\n        [0]: /quickstart/#authentication\n        \"\"\"\n        return self._auth",
+      "score": 0.7323346138000488
+    },
+    {
+      "name": "application_docstring",
+      "file_path": "data/repos/werkzeug/examples/coolmagic/application.py",
+      "start_line": 1,
+      "end_line": 6,
+      "code_text": "This module provides the WSGI application.\n\nThe WSGI middlewares are applied in the `make_app` factory function that\nautomatically wraps the application within the require middlewares. Per\ndefault only the `SharedDataMiddleware` is applied.\n",
+      "score": 0.6937499642372131
+    },
+    {
+      "name": "proxy_fix_docstring",
+      "file_path": "data/repos/werkzeug/src/werkzeug/middleware/proxy_fix.py",
+      "start_line": 1,
+      "end_line": 23,
+      "code_text": "\nX-Forwarded-For Proxy Fix\n=========================\n\nThis module provides a middleware that adjusts the WSGI environ based on\n``X-Forwarded-`` headers that proxies in front of an application may\nset.\n\nWhen an application is running behind a proxy server, WSGI may see the\nrequest as coming from that server rather than the real client. Proxies\nset various headers to track where the request actually came from.\n\nThis middleware should only be used if the application is actually\nbehind such a proxy, and should be configured with the number of proxies\nthat are chained in front of it. Not all proxies set all the headers.\nSince incoming headers can be faked, you must set how many proxies are\nsetting each header so the middleware knows what to trust.\n\n.. autoclass:: ProxyFix\n\n:copyright: 2007 Pallets\n:license: BSD-3-Clause\n",
+      "score": 0.6279211044311523
+    },
+    {
+      "name": "auth_docstring",
+      "file_path": "data/repos/requests/src/requests/auth.py",
+      "start_line": 1,
+      "end_line": 6,
+      "code_text": "\nrequests.auth\n~~~~~~~~~~~~~\n\nThis module contains the authentication handlers for Requests.\n",
+      "score": 0.46946537494659424
+    },
+    {
+      "name": "dispatcher_docstring",
+      "file_path": "data/repos/werkzeug/src/werkzeug/middleware/dispatcher.py",
+      "start_line": 1,
+      "end_line": 32,
+      "code_text": "\nApplication Dispatcher\n======================\n\nThis middleware creates a single WSGI application that dispatches to\nmultiple other WSGI applications mounted at different URL paths.\n\nA common example is writing a Single Page Application, where you have a\nbackend API and a frontend written in JavaScript that does the routing\nin the browser rather than requesting different pages from the server.\nThe frontend is a single HTML and JS file that should be served for any\npath besides \"/api\".\n\nThis example dispatches to an API app under \"/api\", an admin app\nunder \"/admin\", and an app that serves frontend files for all other\nrequests::\n\n    app = DispatcherMiddleware(serve_frontend, {\n        '/api': api_app,\n        '/admin': admin_app,\n    })\n\nIn production, you might instead handle this at the HTTP server level,\nserving files or proxying to application servers based on location. The\nAPI and admin apps would each be deployed with a separate WSGI server,\nand the static files would be served directly by the HTTP server.\n\n.. autoclass:: DispatcherMiddleware\n\n:copyright: 2007 Pallets\n:license: BSD-3-Clause\n",
+      "score": 0.35033077001571655
+    }
+  ],
+  "How does the rate limiter work and which files use it?": [
+    {
+      "name": "LimitedStream.on_exhausted",
+      "file_path": "data/repos/werkzeug/src/werkzeug/wsgi.py",
+      "start_line": 482,
+      "end_line": 495,
+      "code_text": "def on_exhausted(self) -> None:\n        \"\"\"Called when attempting to read after the limit has been reached.\n\n        The default behavior is to do nothing, unless the limit is a maximum, in which\n        case it raises :exc:`.RequestEntityTooLarge`.\n\n        .. versionchanged:: 2.3\n            Raises ``RequestEntityTooLarge`` if the limit is a maximum.\n\n        .. versionchanged:: 2.3\n            Any return value is ignored.\n        \"\"\"\n        if self._limit_is_max:\n            raise RequestEntityTooLarge()",
+      "score": 0.7065003514289856
+    },
+    {
+      "name": "LimitedStream.on_disconnect",
+      "file_path": "data/repos/werkzeug/src/werkzeug/wsgi.py",
+      "start_line": 497,
+      "end_line": 517,
+      "code_text": "Called when an attempted read receives zero bytes before the limit was\n        reached. This indicates that the client disconnected before sending the full\n        request body.\n\n        The default behavior is to raise :exc:`.ClientDisconnected`, unless the limit is\n        a maximum and no error was raised.\n\n        .. versionchanged:: 2.3\n            Added the ``error`` parameter. Do nothing if the limit is a maximum and no\n            error was raised.\n\n        .. versionchanged:: 2.3\n            Any return value is ignored.\n        ",
+      "score": 0.6888888478279114
+    },
+    {
+      "name": "LimitedStream.exhaust",
+      "file_path": "data/repos/werkzeug/src/werkzeug/wsgi.py",
+      "start_line": 519,
+      "end_line": 532,
+      "code_text": "def exhaust(self) -> bytes:\n        \"\"\"Exhaust the stream by reading until the limit is reached or the client\n        disconnects, returning the remaining data.\n\n        .. versionchanged:: 2.3\n            Return the remaining data.\n\n        .. versionchanged:: 2.2.3\n            Handle case where wrapped stream returns fewer bytes than requested.\n        \"\"\"\n        if not self.is_exhausted:\n            return self.readall()\n\n        return b\"\"",
+      "score": 0.6827665567398071
+    },
+    {
+      "name": "Limits",
+      "file_path": "data/repos/httpx/httpx/_config.py",
+      "start_line": 159,
+      "end_line": 160,
+      "code_text": "class Limits:\n    ",
+      "score": 0.5981172323226929
+    },
+    {
+      "name": "Request.close",
+      "file_path": "data/repos/werkzeug/src/werkzeug/wrappers/request.py",
+      "start_line": 321,
+      "end_line": 330,
+      "code_text": "def close(self) -> None:\n        \"\"\"Closes associated resources of this request object.  This\n        closes all file handles explicitly.  You can also use the request\n        object in a with statement which will automatically close it.\n\n        .. versionadded:: 0.9\n        \"\"\"\n        files = self.__dict__.get(\"files\")\n        for _key, value in iter_multi_items(files or ()):\n            value.close()",
+      "score": 0.47328805923461914
+    }
+  ],
+  "What happens when a payment fails? Trace the full code path.": [
+    {
+      "name": "explain_template_loading_attempts",
+      "file_path": "data/repos/flask/src/flask/debughelpers.py",
+      "start_line": 124,
+      "end_line": 179,
+      "code_text": "This should help developers understand what failed",
+      "score": 0.6888888478279114
+    },
+    {
+      "name": "Request.full_path",
+      "file_path": "data/repos/werkzeug/src/werkzeug/sansio/request.py",
+      "start_line": 211,
+      "end_line": 213,
+      "code_text": "def full_path(self) -> str:\n        \"\"\"Requested path, including the query string.\"\"\"\n        return f\"{self.path}?{self.query_string.decode()}\"",
+      "score": 0.6729256510734558
+    },
+    {
+      "name": "HTTPAdapter.request_url",
+      "file_path": "data/repos/requests/src/requests/adapters.py",
+      "start_line": 565,
+      "end_line": 597,
+      "code_text": "def request_url(\n        self, request: PreparedRequest, proxies: dict[str, str] | None\n    ) -> str:\n        \"\"\"Obtain the url to use when making the final request.\n\n        If the message is being sent through a HTTP proxy, the full URL has to\n        be used. Otherwise, we should only use the path portion of the URL.\n\n        This should not be called from user code, and is only exposed for use\n        when subclassing the\n        :class:`HTTPAdapter <requests.adapters.HTTPAdapter>`.\n\n        :param request: The :class:`PreparedRequest <PreparedRequest>` being sent.\n        :param proxies: A dictionary of schemes or schemes and hosts to proxy URLs.\n        :rtype: str\n        \"\"\"\n        assert _is_prepared(request)\n\n        proxy = select_proxy(request.url, proxies)\n        scheme = urlparse(request.url).scheme\n\n        is_proxied_http_request = proxy and scheme != \"https\"\n        using_socks_proxy = False\n        if proxy:\n            proxy_scheme = urlparse(proxy).scheme.lower()\n            using_socks_proxy = proxy_scheme.startswith(\"socks\")\n\n        url = request.path_url\n\n        if is_proxied_http_request and not using_socks_proxy:\n            url = urldefragauth(request.url)\n\n        return url",
+      "score": 0.5052880048751831
+    },
+    {
+      "name": "App.trap_http_exception",
+      "file_path": "data/repos/flask/src/flask/sansio/app.py",
+      "start_line": 893,
+      "end_line": 926,
+      "code_text": "def trap_http_exception(self, e: Exception) -> bool:\n        \"\"\"Checks if an HTTP exception should be trapped or not.  By default\n        this will return ``False`` for all exceptions except for a bad request\n        key error if ``TRAP_BAD_REQUEST_ERRORS`` is set to ``True``.  It\n        also returns ``True`` if ``TRAP_HTTP_EXCEPTIONS`` is set to ``True``.\n\n        This is called for all HTTP exceptions raised by a view function.\n        If it returns ``True`` for any exception the error handler for this\n        exception is not called and it shows up as regular exception in the\n        traceback.  This is helpful for debugging implicitly raised HTTP\n        exceptions.\n\n        .. versionchanged:: 1.0\n            Bad request errors are not trapped by default in debug mode.\n\n        .. versionadded:: 0.8\n        \"\"\"\n        if self.config[\"TRAP_HTTP_EXCEPTIONS\"]:\n            return True\n\n        trap_bad_request = self.config[\"TRAP_BAD_REQUEST_ERRORS\"]\n\n        # if unset, trap key errors in debug mode\n        if (\n            trap_bad_request is None\n            and self.debug\n            and isinstance(e, BadRequestKeyError)\n        ):\n            return True\n\n        if trap_bad_request:\n            return isinstance(e, BadRequest)\n\n        return False",
+      "score": 0.39233601093292236
+    },
+    {
+      "name": "Request.url",
+      "file_path": "data/repos/werkzeug/src/werkzeug/sansio/request.py",
+      "start_line": 223,
+      "end_line": 228,
+      "code_text": "def url(self) -> str:\n        \"\"\"The full request URL with the scheme, host, root path, path,\n        and query string.\"\"\"\n        return get_current_url(\n            self.scheme, self.host, self.root_path, self.path, self.query_string\n        )",
+      "score": 0.37887078523635864
+    }
+  ],
+  "Find all places add_url_rule is called and explain the contexts.": [
+    {
+      "name": "Scaffold.route",
+      "file_path": "data/repos/flask/src/flask/sansio/scaffold.py",
+      "start_line": 336,
+      "end_line": 365,
+      "code_text": "def route(self, rule: str, **options: t.Any) -> t.Callable[[T_route], T_route]:\n        \"\"\"Decorate a view function to register it with the given URL\n        rule and options. Calls :meth:`add_url_rule`, which has more\n        details about the implementation.\n\n        .. code-block:: python\n\n            @app.route(\"/\")\n            def index():\n                return \"Hello, World!\"\n\n        See :ref:`url-route-registrations`.\n\n        The endpoint name for the route defaults to the name of the view\n        function if the ``endpoint`` parameter isn't passed.\n\n        The ``methods`` parameter defaults to ``[\"GET\"]``. ``HEAD`` and\n        ``OPTIONS`` are added automatically.\n\n        :param rule: The URL rule string.\n        :param options: Extra options passed to the\n            :class:`~werkzeug.routing.Rule` object.\n        \"\"\"\n\n        def decorator(f: T_route) -> T_route:\n            endpoint = options.pop(\"endpoint\", None)\n            self.add_url_rule(rule, endpoint, f, **options)\n            return f\n\n        return decorator",
+      "score": 0.9127238988876343
+    },
+    {
+      "name": "BlueprintSetupState.add_url_rule",
+      "file_path": "data/repos/flask/src/flask/sansio/blueprints.py",
+      "start_line": 87,
+      "end_line": 116,
+      "code_text": "def add_url_rule(\n        self,\n        rule: str,\n        endpoint: str | None = None,\n        view_func: ft.RouteCallable | None = None,\n        **options: t.Any,\n    ) -> None:\n        \"\"\"A helper method to register a rule (and optionally a view function)\n        to the application.  The endpoint is automatically prefixed with the\n        blueprint's name.\n        \"\"\"\n        if self.url_prefix is not None:\n            if rule:\n                rule = \"/\".join((self.url_prefix.rstrip(\"/\"), rule.lstrip(\"/\")))\n            else:\n                rule = self.url_prefix\n        options.setdefault(\"subdomain\", self.subdomain)\n        if endpoint is None:\n            endpoint = _endpoint_from_view_func(view_func)  # type: ignore\n        defaults = self.url_defaults\n        if \"defaults\" in options:\n            defaults = dict(defaults, **options.pop(\"defaults\"))\n\n        self.app.add_url_rule(\n            rule,\n            f\"{self.name_prefix}.{self.name}.{endpoint}\".lstrip(\".\"),\n            view_func,\n            defaults=defaults,\n            **options,\n        )",
+      "score": 0.7695178389549255
+    },
+    {
+      "name": "Blueprint.add_url_rule",
+      "file_path": "data/repos/flask/src/flask/sansio/blueprints.py",
+      "start_line": 413,
+      "end_line": 441,
+      "code_text": "def add_url_rule(\n        self,\n        rule: str,\n        endpoint: str | None = None,\n        view_func: ft.RouteCallable | None = None,\n        provide_automatic_options: bool | None = None,\n        **options: t.Any,\n    ) -> None:\n        \"\"\"Register a URL rule with the blueprint. See :meth:`.Flask.add_url_rule` for\n        full documentation.\n\n        The URL rule is prefixed with the blueprint's URL prefix. The endpoint name,\n        used with :func:`url_for`, is prefixed with the blueprint's name.\n        \"\"\"\n        if endpoint and \".\" in endpoint:\n            raise ValueError(\"'endpoint' may not contain a dot '.' character.\")\n\n        if view_func and hasattr(view_func, \"__name__\") and \".\" in view_func.__name__:\n            raise ValueError(\"'view_func' name may not contain a dot '.' character.\")\n\n        self.record(\n            lambda s: s.add_url_rule(\n                rule,\n                endpoint,\n                view_func,\n                provide_automatic_options=provide_automatic_options,\n                **options,\n            )\n        )",
+      "score": 0.7374999523162842
+    },
+    {
+      "name": "Scaffold.add_url_rule",
+      "file_path": "data/repos/flask/src/flask/sansio/scaffold.py",
+      "start_line": 368,
+      "end_line": 433,
+      "code_text": "def add_url_rule(\n        self,\n        rule: str,\n        endpoint: str | None = None,\n        view_func: ft.RouteCallable | None = None,\n        provide_automatic_options: bool | None = None,\n        **options: t.Any,\n    ) -> None:\n        \"\"\"Register a rule for routing incoming requests and building\n        URLs. The :meth:`route` decorator is a shortcut to call this\n        with the ``view_func`` argument. These are equivalent:\n\n        .. code-block:: python\n\n            @app.route(\"/\")\n            def index():\n                ...\n\n        .. code-block:: python\n\n            def index():\n                ...\n\n            app.add_url_rule(\"/\", view_func=index)\n\n        See :ref:`url-route-registrations`.\n\n        The endpoint name for the route defaults to the name of the view\n        function if the ``endpoint`` parameter isn't passed. An error\n        will be raised if a function has already been registered for the\n        endpoint.\n\n        The ``methods`` parameter defaults to ``[\"GET\"]``. ``HEAD`` is\n        always added automatically, and ``OPTIONS`` is added\n        automatically by default.\n\n        ``view_func`` does not necessarily need to be passed, but if the\n        rule should participate in routing an endpoint name must be\n        associated with a view function at some point with the\n        :meth:`endpoint` decorator.\n\n        .. code-block:: python\n\n            app.add_url_rule(\"/\", endpoint=\"index\")\n\n            @app.endpoint(\"index\")\n            def index():\n                ...\n\n        If ``view_func`` has a ``required_methods`` attribute, those\n        methods are added to the passed and automatic methods. If it\n        has a ``provide_automatic_methods`` attribute, it is used as the\n        default if the parameter is not passed.\n\n        :param rule: The URL rule string.\n        :param endpoint: The endpoint name to associate with the rule\n            and view function. Used when routing and building URLs.\n            Defaults to ``view_func.__name__``.\n        :param view_func: The view function to associate with the\n            endpoint name.\n        :param provide_automatic_options: Add the ``OPTIONS`` method and\n            respond to ``OPTIONS`` requests automatically.\n        :param options: Extra options passed to the\n            :class:`~werkzeug.routing.Rule` object.\n        \"\"\"\n        raise NotImplementedError",
+      "score": 0.614602267742157
+    },
+    {
+      "name": "PageMeta.__init__",
+      "file_path": "data/repos/werkzeug/examples/cupoftee/application.py",
+      "start_line": 32,
+      "end_line": 38,
+      "code_text": "def __init__(cls, name, bases, d):\n        type.__init__(cls, name, bases, d)\n        if d.get(\"url_rule\") is not None:\n            pages[cls.identifier] = cls\n            url_map.add(\n                Rule(cls.url_rule, endpoint=cls.identifier, **cls.url_arguments)\n            )",
+      "score": 0.5616316199302673
+    }
+  ],
+  "How does Flask handle routing for a URL?": [
+    {
+      "name": "Flask.url_for",
+      "file_path": "data/repos/flask/src/flask/app.py",
+      "start_line": 1102,
+      "end_line": 1222,
+      "code_text": "def url_for(\n        self,\n        /,\n        endpoint: str,\n        *,\n        _anchor: str | None = None,\n        _method: str | None = None,\n        _scheme: str | None = None,\n        _external: bool | None = None,\n        **values: t.Any,\n    ) -> str:\n        \"\"\"Generate a URL to the given endpoint with the given values.\n\n        This is called by :func:`flask.url_for`, and can be called\n        directly as well.\n\n        An *endpoint* is the name of a URL rule, usually added with\n        :meth:`@app.route() <route>`, and usually the same name as the\n        view function. A route defined in a :class:`~flask.Blueprint`\n        will prepend the blueprint's name separated by a ``.`` to the\n        endpoint.\n\n        In some cases, such as email messages, you want URLs to include\n        the scheme and domain, like ``https://example.com/hello``. When\n        not in an active request, URLs will be external by default, but\n        this requires setting :data:`SERVER_NAME` so Flask knows what\n        domain to use. :data:`APPLICATION_ROOT` and\n        :data:`PREFERRED_URL_SCHEME` should also be configured as\n        needed. This config is only used when not in an active request.\n\n        Functions can be decorated with :meth:`url_defaults` to modify\n        keyword arguments before the URL is built.\n\n        If building fails for some reason, such as an unknown endpoint\n        or incorrect values, the app's :meth:`handle_url_build_error`\n        method is called. If that returns a string, that is returned,\n        otherwise a :exc:`~werkzeug.routing.BuildError` is raised.\n\n        :param endpoint: The endpoint name associated with the URL to\n            generate. If this starts with a ``.``, the current blueprint\n            name (if any) will be used.\n        :param _anchor: If given, append this as ``#anchor`` to the URL.\n        :param _method: If given, generate the URL associated with this\n            method for the endpoint.\n        :param _scheme: If given, the URL will have this scheme if it\n            is external.\n        :param _external: If given, prefer the URL to be internal\n            (False) or require it to be external (True). External URLs\n            include the scheme and domain. When not in an active\n            request, URLs are external by default.\n        :param values: Values to use for the variable parts of the URL\n            rule. Unknown keys are appended as query string arguments,\n            like ``?a=b&c=d``.\n\n        .. versionadded:: 2.2\n            Moved from ``flask.url_for``, which calls this method.\n        \"\"\"\n        if (ctx := _cv_app.get(None)) is not None and ctx.has_request:\n            url_adapter = ctx.url_adapter\n            blueprint_name = ctx.request.blueprint\n\n            # If the endpoint starts with \".\" and the request matches a\n            # blueprint, the endpoint is relative to the blueprint.\n            if endpoint[:1] == \".\":\n                if blueprint_name is not None:\n                    endpoint = f\"{blueprint_name}{endpoint}\"\n                else:\n                    endpoint = endpoint[1:]\n\n            # When in a request, generate a URL without scheme and\n            # domain by default, unless a scheme is given.\n            if _external is None:\n                _external = _scheme is not None\n        else:\n            # If called by helpers.url_for, an app context is active,\n            # use its url_adapter. Otherwise, app.url_for was called\n            # directly, build an adapter.\n            if ctx is not None:\n                url_adapter = ctx.url_adapter\n            else:\n                url_adapter = self.create_url_adapter(None)\n\n            if url_adapter is None:\n                raise RuntimeError(\n                    \"Unable to build URLs outside an active request\"\n                    \" without 'SERVER_NAME' configured. Also configure\"\n                    \" 'APPLICATION_ROOT' and 'PREFERRED_URL_SCHEME' as\"\n                    \" needed.\"\n                )\n\n            # When outside a request, generate a URL with scheme and\n            # domain by default.\n            if _external is None:\n                _external = True\n\n        # It is an error to set _scheme when _external=False, in order\n        # to avoid accidental insecure URLs.\n        if _scheme is not None and not _external:\n            raise ValueError(\"When specifying '_scheme', '_external' must be True.\")\n\n        self.inject_url_defaults(endpoint, values)\n\n        try:\n            rv = url_adapter.build(  # type: ignore[union-attr]\n                endpoint,\n                values,\n                method=_method,\n                url_scheme=_scheme,\n                force_external=_external,\n            )\n        except BuildError as error:\n            values.update(\n                _anchor=_anchor, _method=_method, _scheme=_scheme, _external=_external\n            )\n            return self.handle_url_build_error(error, endpoint, values)\n\n        if _anchor is not None:\n            _anchor = _url_quote(_anchor, safe=\"%!#$&'()*+,/:;=?@\")\n            rv = f\"{rv}#{_anchor}\"\n\n        return rv",
+      "score": 1.0
+    },
+    {
+      "name": "url_for",
+      "file_path": "data/repos/flask/src/flask/helpers.py",
+      "start_line": 200,
+      "end_line": 251,
+      "code_text": "def url_for(\n    endpoint: str,\n    *,\n    _anchor: str | None = None,\n    _method: str | None = None,\n    _scheme: str | None = None,\n    _external: bool | None = None,\n    **values: t.Any,\n) -> str:\n    \"\"\"Generate a URL to the given endpoint with the given values.\n\n    This requires an active request or application context, and calls\n    :meth:`current_app.url_for() <flask.Flask.url_for>`. See that method\n    for full documentation.\n\n    :param endpoint: The endpoint name associated with the URL to\n        generate. If this starts with a ``.``, the current blueprint\n        name (if any) will be used.\n    :param _anchor: If given, append this as ``#anchor`` to the URL.\n    :param _method: If given, generate the URL associated with this\n        method for the endpoint.\n    :param _scheme: If given, the URL will have this scheme if it is\n        external.\n    :param _external: If given, prefer the URL to be internal (False) or\n        require it to be external (True). External URLs include the\n        scheme and domain. When not in an active request, URLs are\n        external by default.\n    :param values: Values to use for the variable parts of the URL rule.\n        Unknown keys are appended as query string arguments, like\n        ``?a=b&c=d``.\n\n    .. versionchanged:: 2.2\n        Calls ``current_app.url_for``, allowing an app to override the\n        behavior.\n\n    .. versionchanged:: 0.10\n       The ``_scheme`` parameter was added.\n\n    .. versionchanged:: 0.9\n       The ``_anchor`` and ``_method`` parameters were added.\n\n    .. versionchanged:: 0.9\n       Calls ``app.handle_url_build_error`` on build errors.\n    \"\"\"\n    return current_app.url_for(\n        endpoint,\n        _anchor=_anchor,\n        _method=_method,\n        _scheme=_scheme,\n        _external=_external,\n        **values,\n    )",
+      "score": 0.711378276348114
+    },
+    {
+      "name": "FormDataRoutingRedirect.__init__",
+      "file_path": "data/repos/flask/src/flask/debughelpers.py",
+      "start_line": 57,
+      "end_line": 78,
+      "code_text": "def __init__(self, request: Request) -> None:\n        exc = request.routing_exception\n        assert isinstance(exc, RequestRedirect)\n        buf = [\n            f\"A request was sent to '{request.url}', but routing issued\"\n            f\" a redirect to the canonical URL '{exc.new_url}'.\"\n        ]\n\n        if f\"{request.base_url}/\" == exc.new_url.partition(\"?\")[0]:\n            buf.append(\n                \" The URL was defined with a trailing slash. Flask\"\n                \" will redirect to the URL with a trailing slash if it\"\n                \" was accessed without one.\"\n            )\n\n        buf.append(\n            \" Send requests to the canonical URL, or use 307 or 308 for\"\n            \" routing redirects. Otherwise, browsers will drop form\"\n            \" data.\\n\\n\"\n            \"This exception is only raised in debug mode.\"\n        )\n        super().__init__(\"\".join(buf))",
+      "score": 0.6834405064582825
+    },
+    {
+      "name": "Flask.send_static_file",
+      "file_path": "data/repos/flask/src/flask/app.py",
+      "start_line": 392,
+      "end_line": 412,
+      "code_text": "The view function used to serve files from\n        :attr:`static_folder`. A route is automatically registered for\n        this view at :attr:`static_url_path` if :attr:`static_folder` is\n        set.\n\n        Note this is a duplicate of the same method in the Flask\n        class.\n\n        .. versionadded:: 0.5\n\n        ",
+      "score": 0.6260794401168823
+    },
+    {
+      "name": "Blueprint.send_static_file",
+      "file_path": "data/repos/flask/src/flask/blueprints.py",
+      "start_line": 82,
+      "end_line": 102,
+      "code_text": "def send_static_file(self, filename: str) -> Response:\n        \"\"\"The view function used to serve files from\n        :attr:`static_folder`. A route is automatically registered for\n        this view at :attr:`static_url_path` if :attr:`static_folder` is\n        set.\n\n        Note this is a duplicate of the same method in the Flask\n        class.\n\n        .. versionadded:: 0.5\n\n        \"\"\"\n        if not self.has_static_folder:\n            raise RuntimeError(\"'static_folder' must be set to serve static_files.\")\n\n        # send_file only knows to call get_send_file_max_age on the app,\n        # call it here so it works for blueprints too.\n        max_age = self.get_send_file_max_age(filename)\n        return send_from_directory(\n            t.cast(str, self.static_folder), filename, max_age=max_age\n        )",
+      "score": 0.5207836031913757
+    }
+  ]
+}

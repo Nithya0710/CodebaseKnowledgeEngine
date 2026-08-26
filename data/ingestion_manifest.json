@@ -1,0 +1,23 @@
+{
+  "repo_names": [
+    "click",
+    "flask",
+    "httpx",
+    "itsdangerous",
+    "jinja",
+    "markupsafe",
+    "requests",
+    "werkzeug"
+  ],
+  "chunk_counts": {
+    "flask": 406,
+    "click": 613,
+    "jinja": 813,
+    "itsdangerous": 79,
+    "markupsafe": 64,
+    "werkzeug": 1467,
+    "requests": 309,
+    "httpx": 522
+  },
+  "total_chunks": 4273
+}
