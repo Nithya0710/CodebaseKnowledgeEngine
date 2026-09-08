@@ -19,11 +19,31 @@ class TestRerankEdgeCases:
         results = rerank("what does solo_fn do?", [chunk], keep_top=5)
         assert len(results) == 1
         assert results[0][0].name == "solo_fn"
+        assert len(results[0]) == 3  # (chunk, blended_score, raw_score)
 
     def test_keep_top_greater_than_candidates_returns_all(self):
         chunks = [make_chunk("a"), make_chunk("b"), make_chunk("c")]
         results = rerank("test query", chunks, keep_top=100)
         assert len(results) == 3
+
+    def test_raw_score_is_returned_unmodified(self, monkeypatch):
+        """
+        The third element of each result tuple must be the RAW
+        cross-encoder score, not a normalized/blended value — this is
+        the whole point of today's fix, since guardrails.py needs an
+        absolute, cross-query-comparable score to gate on.
+        """
+        chunks = [make_chunk("a"), make_chunk("b")]
+
+        def fake_predict(pairs):
+            return [-11.5, -2.3]
+
+        monkeypatch.setattr("src.retrieval.rerank._cross_encoder.predict", fake_predict)
+
+        results = rerank("test query", chunks, keep_top=2, alpha=0.65)
+        raw_scores = {chunk.name: raw for chunk, _, raw in results}
+        assert raw_scores["a"] == -11.5
+        assert raw_scores["b"] == -2.3
 
     def test_alpha_zero_uses_pure_prior_rank(self, monkeypatch):
         """
@@ -42,7 +62,7 @@ class TestRerankEdgeCases:
         monkeypatch.setattr("src.retrieval.rerank._cross_encoder.predict", fake_predict)
 
         results = rerank("test query", chunks, keep_top=3, alpha=0.0)
-        result_names = [c.name for c, _ in results]
+        result_names = [c.name for c, _, _ in results]
         assert result_names == ["first", "second", "third"]
 
     def test_alpha_one_uses_pure_cross_encoder_score(self, monkeypatch):
@@ -59,7 +79,7 @@ class TestRerankEdgeCases:
         monkeypatch.setattr("src.retrieval.rerank._cross_encoder.predict", fake_predict)
 
         results = rerank("test query", chunks, keep_top=3, alpha=1.0)
-        result_names = [c.name for c, _ in results]
+        result_names = [c.name for c, _, _ in results]
         assert result_names == ["third", "second", "first"]
 
     def test_identical_cross_encoder_scores_does_not_crash(self, monkeypatch):
@@ -78,7 +98,7 @@ class TestRerankEdgeCases:
         results = rerank("test query", chunks, keep_top=3, alpha=0.65)
         assert len(results) == 3
         # With tied CE scores, prior rank should be the only differentiator
-        result_names = [c.name for c, _ in results]
+        result_names = [c.name for c, _, _ in results]
         assert result_names == ["a", "b", "c"]
 
     def test_cross_encoder_failure_returns_empty_list(self, monkeypatch):

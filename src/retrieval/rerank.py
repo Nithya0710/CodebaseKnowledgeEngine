@@ -15,43 +15,44 @@ _cross_encoder = CrossEncoder(CROSS_ENCODER_MODEL)
 logger.info(f"Loaded cross-encoder: {CROSS_ENCODER_MODEL}")
 
 
+RAW_SCORE_GUARDRAIL_THRESHOLD = -10.0  # empirically derived: every real, in-corpus
+                                          # question's best raw cross-encoder score
+                                          # observed so far is -9.35 or better; a
+                                          # clearly out-of-scope question's best score
+                                          # was -10.70. This is a THIN, DATA-LIMITED gap
+                                          # (one negative example) — worth revisiting
+                                          # with more out-of-scope test cases before
+                                          # trusting it heavily, especially once this
+                                          # pipeline accepts arbitrary user-supplied repos.
+
+
 def rerank(
     question: str,
     candidates: list[CodeChunk],
     keep_top: int = 5,
     alpha: float = 0.65,
-) -> list[tuple[CodeChunk, float]]:
-    """
-    Score every candidate chunk jointly against the question using the
-    cross-encoder, then BLEND that score with the chunk's incoming rank
-    (its position after hybrid retrieval + graph augmentation) rather
-    than sorting purely by cross-encoder score.
+) -> list[tuple[CodeChunk, float, float]]:
+    """Score every candidate chunk jointly against the question using the
+    cross-encoder, then blend that score with the chunk's incoming rank
+    for RANKING purposes, while also returning the RAW cross-encoder
+    score separately for GUARDRAIL purposes.
 
-    RATIONALE FOR BLENDING (not a pure cross-encoder override):
-    Days 6-9 built substantial multi-signal agreement — a chunk ranking
-    highly after RRF fusion (Day 8) reflects agreement across THREE
-    independent retrieval channels (BM25, dense code, dense doc), and
-    graph augmentation (Day 9) adds structurally-verified relevance on
-    top of that. That's strong, hard-won evidence. A single
-    general-purpose cross-encoder (trained on web search relevance, not
-    code) can have real blind spots — e.g. over-weighting a literal
-    keyword match ("middleware") over deeper semantic relevance. Fully
-    overriding strong multi-signal consensus with one model's opinion
-    risks discarding that evidence based on a surface-level quirk. This
-    blend requires the cross-encoder to show a MEANINGFUL preference,
-    not just any preference, to overturn a chunk's prior-stage standing.
+    Returns (chunk, blended_score, raw_ce_score) triples. These two
+    scores serve genuinely different jobs and must not be conflated:
+    - blended_score is normalized [0,1] RELATIVE TO THIS BATCH's own
+      candidates (min-max), which makes it good for ORDERING the top-k,
+      but structurally means SOMETHING always scores near 1.0 — even
+      if every candidate in the batch is actually irrelevant. This
+      makes it unsuitable as an absolute "is this good enough" signal.
+    - raw_ce_score is the cross-encoder's unnormalized logit, directly
+      comparable ACROSS different queries/batches (unlike blended_score,
+      which only means something within its own batch). This is what
+      the pre-generation guardrail (guardrails.py) checks against a
+      fixed absolute threshold, since gating on "is there real signal
+      here" requires an absolute measure, not a relative one.
 
-    alpha controls how much weight the cross-encoder gets vs. prior rank
-    (default 0.65 — cross-encoder is still the majority signal, since
-    it IS a more accurate model in principle, but prior consensus
-    remains a real counterweight rather than being discarded entirely).
-
-    Prior rank is normalized via 1/(1+rank) (0-indexed), giving a smooth
-    score in (0, 1] that preserves spacing near the top of the list.
-    Cross-encoder scores are min-max normalized to [0, 1] WITHIN this
-    batch, since raw logits are unbounded and their range shifts
-    per-query — there's no fixed, universal scale to normalize against.
-    """
+    See module docstring above for the full bi-encoder vs cross-encoder
+    rationale."""
     if not candidates:
         logger.warning("rerank called with zero candidates")
         return []
@@ -69,7 +70,7 @@ def rerank(
 
     def normalize_ce_score(score: float) -> float:
         if score_range == 0:
-            return 1.0  # all candidates scored identically — no info to differentiate
+            return 1.0
         return (score - min_score) / score_range
 
     def normalize_prior_rank(rank: int) -> float:
@@ -80,7 +81,7 @@ def rerank(
         ce_norm = normalize_ce_score(raw_score)
         prior_norm = normalize_prior_rank(prior_rank)
         final_score = alpha * ce_norm + (1 - alpha) * prior_norm
-        blended.append((chunk, final_score, raw_score, prior_rank))
+        blended.append((chunk, final_score, float(raw_score), prior_rank))
 
     blended.sort(key=lambda item: item[1], reverse=True)
     top = blended[:keep_top]
@@ -96,7 +97,7 @@ def rerank(
         f"Reranked {len(candidates)} candidates -> top-{len(top)} for: {question!r} "
         f"(alpha={alpha})"
     )
-    return [(chunk, final_score) for chunk, final_score, _, _ in top]
+    return [(chunk, final_score, raw_score) for chunk, final_score, raw_score, _ in top]
 
 
 if __name__ == '__main__':
@@ -144,7 +145,7 @@ if __name__ == '__main__':
     from src.retrieval.ingest import load_or_ingest_corpus
     from src.retrieval.hybrid import hybrid_retrieve
     from src.retrieval.augment import augment_with_related_files
-    # from src.chunking.dependency_graph import save_graph, load_graph
+    from src.chunking.dependency_graph import save_graph, load_graph
 
     repo_names = ["flask", "click", "jinja", "itsdangerous", "markupsafe", "werkzeug", "requests", "httpx"]
     repo_roots = [Path(f"data/repos/{name}") for name in repo_names]
