@@ -63,9 +63,11 @@ class TestBuildPrompt:
             (make_chunk(name="bar", code_text="def bar(): pass"), 0.8, -3.0),
         ]
         prompt = build_prompt("question", chunks)
-        assert prompt.index("[S1]") < prompt.index("def foo(): pass")
-        assert prompt.index("[S2]") < prompt.index("def bar(): pass")
-        assert prompt.index("def foo(): pass") < prompt.index("[S2]")
+        # Anchor on full context headers: the instruction text also mentions
+        # "[S1] or [S2]", so a bare label search would match the instructions.
+        s1 = prompt.index("[S1] a.py :: foo")
+        s2 = prompt.index("[S2] a.py :: bar")
+        assert s1 < prompt.index("def foo(): pass") < s2 < prompt.index("def bar(): pass")
 
     def test_prompt_states_valid_label_range(self):
         chunks = [(make_chunk(name=f"f{i}"), 0.9, -2.0) for i in range(3)]
