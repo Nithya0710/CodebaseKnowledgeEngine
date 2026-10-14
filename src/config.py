@@ -1,7 +1,7 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    ollama_model: str = "llama3.2:3b"
+    ollama_model: str = "qwen2.5:7b"
     ollama_base_url: str = "http://localhost:11434"
     chroma_persist_dir: str = "./data/chroma"
     log_level: str = "INFO"

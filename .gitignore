@@ -5,7 +5,8 @@ venv/
 .venv/
 .ruff_cache/
 *.pyc
-data/repos
+data/repos/
+data/chroma/
 
 # Python artifacts
 *.pyo
