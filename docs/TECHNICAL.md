@@ -164,3 +164,14 @@ Privacy: with this judge, the questions, generated answers and retrieved code sn
 
 ### Decision-rule gate (locked before any answers were read)
 The 0.70 thresholds (criteria 1-2) bind only if the judge's own smoke test shows it can score on that scale: the clearly good answer must reach faithfulness >= 0.9, and on answer_relevancy it must score at least 0.20 above the clearly wrong answer. The local judge's result (0.60 faithfulness; 0.59 vs 0.46 relevancy, a 0.13 gap) would fail both. If the gate is closed, the decision rests on the judge-independent criteria: 3 (hallucinated citations stripped, counted in code) and 4 (payment-failure fabrication), plus a reading of each answer for claims not supported by its retrieved chunks, with the unsupported claims quoted here. `run_ragas --decision-rule` reads the saved smoke result and applies the gate itself.
+
+### Groq judge smoke test (gpt-oss-120b) and gate outcome
+| sample | faithfulness | answer_relevancy |
+|---|---|---|
+| good (every claim supported) | 1.00 | 0.629 |
+| wrong (unfaithful) | 0.00 | 0.560 |
+| out-of-scope, honest refusal | 1.00 | 0.00 |
+
+Cost: 9 API calls (9/500 of the daily cap). Calls whose estimate exceeded the 4,000-token per-minute share waited ~59 s for an empty window, so the smoke test took about 6 minutes; no 429s.
+
+Faithfulness now discriminates perfectly (1.00 vs 0.00, up from 0.60 vs 0.00 with the local judge), and the judge correctly marks the honest refusal as noncommittal (relevancy 0). Answer relevancy does not discriminate: the gap is 0.069 against the locked 0.20 margin, so **the gate is closed** and the 0.70 thresholds do not bind. The reason is the metric, not the judge: answer_relevancy regenerates a question from the answer and compares it with the original by embedding similarity. The "wrong" smoke answer is still about `on_exhausted` (it says false things about it), so it regenerates a similar question; relevancy measures staying on topic, not correctness. The margin was not loosened after seeing this, since changing a locked rule after a result would fit the rule to the data. Under the closed gate, the Ollama-vs-Gemini decision rests on criterion 3 (stripped citations), criterion 4 (payment-failure fabrication) and a reading of each answer for claims not supported by its retrieved chunks; RAGAS faithfulness from this judge is reported alongside as supporting evidence.
