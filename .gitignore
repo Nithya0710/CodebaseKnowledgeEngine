@@ -28,3 +28,6 @@ chroma/
 chroma_db/
 *.sqlite3
 *.db
+
+venv_old/
+freeze_old.txt

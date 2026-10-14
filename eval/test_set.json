@@ -1,0 +1,61 @@
+[
+    {
+        "question": "Where is authentication middleware defined and what does it check?",
+        "ground_truth_answer": "There is no single dedicated 'authentication middleware' file in this corpus. The most relevant authentication logic is httpx's BaseClient.auth method, which returns an Auth instance used when no request-level auth is passed. requests' auth.py module documents authentication handlers for that library. Separately, werkzeug has real WSGI middleware infrastructure: SharedDataMiddleware (applied via the make_app factory in examples/coolmagic/application.py), ProxyFix (middleware/proxy_fix.py, adjusts WSGI environ based on X-Forwarded- headers from proxies), and DispatcherMiddleware (middleware/dispatcher.py, dispatches to multiple WSGI apps mounted at different paths) — but none of this middleware performs authentication checks specifically.",
+        "ground_truth_context_chunk_ids": [
+            "httpx:data/repos/httpx/httpx/_client.py:BaseClient.auth:273",
+            "werkzeug:data/repos/werkzeug/examples/coolmagic/application.py:application_docstring:1",
+            "werkzeug:data/repos/werkzeug/src/werkzeug/middleware/proxy_fix.py:proxy_fix_docstring:1",
+            "requests:data/repos/requests/src/requests/auth.py:auth_docstring:1",
+            "werkzeug:data/repos/werkzeug/src/werkzeug/middleware/dispatcher.py:dispatcher_docstring:1"
+        ]   
+    },
+    {
+        "question": "How does Flask handle routing for a URL?",
+        "ground_truth_answer": "Flask handles routing in two distinct directions that are easy to conflate: (1) matching an INCOMING request URL to a view function, handled by Flask.dispatch_request and werkzeug's routing Map/Rule system underneath it, and (2) BUILDING a URL for a given endpoint, handled by Flask.url_for and the helpers.url_for function, which use a URL adapter to construct the string. url_for does not match incoming requests; it generates URLs pointing to registered endpoints.",
+        "ground_truth_context_chunk_ids": [
+          "flask:data/repos/flask/src/flask/app.py:Flask.url_for:1102",
+          "flask:data/repos/flask/src/flask/helpers.py:url_for:200",
+          "flask:data/repos/flask/src/flask/app.py:Flask.dispatch_request:966"
+        ]
+    },
+      {
+        "question": "How does the rate limiter work and which files use it?",
+        "ground_truth_answer": "This corpus does not contain a rate limiter. The closest related code is werkzeug's LimitedStream class (werkzeug/wsgi.py), which limits how many BYTES can be read from a request stream (protecting against oversized request bodies), not how many REQUESTS occur over time — that is a request-size limit, not a rate limit. httpx's Limits class in _config.py configures connection pool limits (max connections, keepalive), which is also unrelated to rate limiting.",
+        "ground_truth_context_chunk_ids": [
+          "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.on_exhausted:482",
+          "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.exhaust:519",
+          "httpx:data/repos/httpx/httpx/_config.py:Limits:159"
+        ]
+      },
+    {
+        "question": "What happens when a payment fails? Trace the full code path.",
+        "ground_truth_answer": "This corpus contains no payment processing logic at all — no payment function, class, or module exists in any of the 8 repos. There is no real code path to trace. The pipeline should state this directly rather than fabricating a plausible-sounding trace through unrelated exception-handling code (e.g. Flask's App.trap_http_exception), which addresses generic HTTP exceptions, not payment failures specifically.",
+        "ground_truth_context_chunk_ids": []
+    },
+    {
+        "question": "What does werkzeug's LimitedStream.on_exhausted method do, and when is it called?",
+        "ground_truth_answer": "LimitedStream.on_exhausted is called when attempting to read from the wrapped stream after its byte limit has already been reached. By default it does nothing, EXCEPT when the limit represents a hard maximum (is_max=True), in which case it raises RequestEntityTooLarge. It's invoked from within readinto() and readall() whenever the remaining byte budget (self.limit - self._pos) is exhausted.",
+        "ground_truth_context_chunk_ids": [
+            "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.on_exhausted:482"
+        ]
+    },
+    {
+        "question": "How does Flask's Blueprint class relate to Scaffold, and what does it inherit or override?",
+        "ground_truth_answer": "Blueprint is a subclass of Scaffold (class Blueprint(Scaffold)). Scaffold provides the base add_url_rule method, which Blueprint overrides: instead of directly registering a rule, Blueprint.add_url_rule wraps the registration in a deferred function via self.record(...), since a blueprint has no application to register routes on until it's actually registered via register_blueprint. When the blueprint IS registered, BlueprintSetupState.add_url_rule (a separate helper class, not Blueprint or Scaffold itself) applies the blueprint's url_prefix and name to the rule, then calls the real app.add_url_rule to finalize registration. Scaffold's own add_url_rule (as seen directly in the corpus) raises NotImplementedError, meaning Scaffold itself is not meant to be used directly — Blueprint and Flask both provide their own working implementations.",
+        "ground_truth_context_chunk_ids": [
+            "flask:data/repos/flask/src/flask/sansio/blueprints.py:Blueprint.add_url_rule:413",
+            "flask:data/repos/flask/src/flask/sansio/blueprints.py:BlueprintSetupState.add_url_rule:87",
+            "flask:data/repos/flask/src/flask/sansio/scaffold.py:Scaffold.add_url_rule:368"
+        ]
+    },
+    {
+        "question": "How does Werkzeug's LimitedStream class prevent reading past a byte limit?",
+        "ground_truth_answer": "LimitedStream wraps an underlying binary stream and tracks how many bytes have been read via self._pos, compared against self.limit. Its core enforcement happens in readinto(): it computes remaining = self.limit - self._pos, and if remaining <= 0, it calls on_exhausted() instead of reading further. If there's still room, it reads at most `remaining` bytes even if more were requested, so a caller can never read past the limit in a single call. is_exhausted is a property that reports whether self._pos >= self.limit. If the underlying stream disconnects early (returns zero bytes) before the limit is reached, on_disconnect() is called instead, which raises ClientDisconnected by default.",
+        "ground_truth_context_chunk_ids": [
+            "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.on_exhausted:482",
+            "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.on_disconnect:497",
+            "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.exhaust:519"
+        ]
+    }
+]

@@ -3,6 +3,7 @@ from src.generation.guardrails import (
     check_context_sufficiency,
     validate_citations,
     InsufficientContextResponse,
+    resolve_citations,
 )
 from src.retrieval.rerank import RAW_SCORE_GUARDRAIL_THRESHOLD
 from src.chunking.ast_parser import CodeChunk
@@ -71,56 +72,68 @@ class TestPreGenerationGuardrail:
 
 
 class TestPostGenerationCitationValidator:
-    def test_fake_chunk_id_is_detected_and_stripped(self, caplog):
-        """
-        A deliberately injected fake chunk_id (one that does NOT
-        correspond to anything in the retrieved context) must be
-        detected and stripped from the visible answer, with the
-        incident logged.
-        """
-        real_chunk = make_chunk(name="add_url_rule", file_path="flask/app.py", repo_name="flask", start_line=10)
-        ranked_chunks = [(real_chunk, 0.91, -2.5)]
+    def _two_chunks(self):
+        return [
+            (make_chunk(name="alpha", file_path="a.py", repo_name="r", start_line=1), 0.9, -2.0),
+            (make_chunk(name="beta", file_path="b.py", repo_name="r", start_line=5), 0.8, -3.0),
+        ]
 
-        fake_id = "flask:flask/security.py:check_auth:5"
-        answer = (
-            f"Route registration happens here [cite: flask:flask/app.py:add_url_rule:10]. "
-            f"Auth is also checked [cite: {fake_id}]."
-        )
+    def test_out_of_range_label_is_stripped_and_logged(self, caplog):
+        answer = "It registers a route [S1]. It also checks auth [S7]."
+        cleaned = validate_citations(answer, self._two_chunks())
 
-        cleaned = validate_citations(answer, ranked_chunks)
-
-        assert fake_id not in cleaned
-        assert "[cite: flask:flask/app.py:add_url_rule:10]" in cleaned
+        assert "[S1]" in cleaned
+        assert "[S7]" not in cleaned
         assert "Hallucinated citation detected" in caplog.text
+        assert cleaned == "It registers a route [S1]. It also checks auth."
+
+    def test_s0_is_invalid(self):
+        """Labels are 1-indexed, so S0 must be treated as fake."""
+        cleaned = validate_citations("Claim [S0].", self._two_chunks())
+        assert "[S0]" not in cleaned
+
+    def test_mixed_group_keeps_only_valid_labels(self):
+        cleaned = validate_citations("Claim [S1, S9].", self._two_chunks())
+        assert "[S1]" in cleaned
+        assert "S9" not in cleaned
+
+    def test_fully_invalid_group_is_removed(self):
+        cleaned = validate_citations("Claim [S8, S9].", self._two_chunks())
+        assert "[" not in cleaned
+
+    def test_ordinary_code_indexing_is_not_touched(self):
+        """The reason the label is [S1], not [1]: code like args[0] in an
+        answer must never be mistaken for a citation."""
+        answer = "It reads `args[0]` and `parts[1]` then returns [S1]."
+        cleaned = validate_citations(answer, self._two_chunks())
+        assert "args[0]" in cleaned
+        assert "parts[1]" in cleaned
+        assert "[S1]" in cleaned
 
     def test_answer_with_no_citations_is_unchanged(self):
-        """
-        An answer with no citation tags at all should pass through
-        validate_citations completely unchanged — no false positives
-        on plain text.
-        """
-        ranked_chunks = [(make_chunk(), 0.91, -2.5)]
         answer = "This is a plain answer with no citations at all."
-        assert validate_citations(answer, ranked_chunks) == answer
+        assert validate_citations(answer, self._two_chunks()) == answer
 
-    def test_chunk_id_format_variant_is_also_validated(self):
-        """
-        Real generations were observed mixing [cite: ...] and
-        [chunk_id: ...] labels for the same underlying citation concept
-        (the model echoing the context block's label instead of the
-        instructed wrapper). Both must be recognized and validated —
-        a real citation in [chunk_id: ...] form should survive, and a
-        fake one in that form should be caught and stripped.
-        """
-        real_chunk = make_chunk(name="add_url_rule", file_path="flask/app.py", repo_name="flask", start_line=10)
-        ranked_chunks = [(real_chunk, 0.91, -2.5)]
 
-        answer = (
-            "Registers a route [chunk_id: flask:flask/app.py:add_url_rule:10]. "
-            "Also checks auth [chunk_id: flask:flask/security.py:fake_fn:99]."
-        )
+class TestResolveCitations:
+    def _two_chunks(self):
+        return [
+            (make_chunk(name="alpha", file_path="a.py", repo_name="r", start_line=1), 0.9, -2.0),
+            (make_chunk(name="beta", file_path="b.py", repo_name="r", start_line=5), 0.8, -3.0),
+        ]
 
-        cleaned = validate_citations(answer, ranked_chunks)
+    def test_labels_map_to_real_chunk_ids_in_order_without_duplicates(self):
+        answer = "First [S2], then [S1], and again [S2]."
+        assert resolve_citations(answer, self._two_chunks()) == [
+            "r:b.py:beta:5",
+            "r:a.py:alpha:1",
+        ]
 
-        assert "[chunk_id: flask:flask/app.py:add_url_rule:10]" in cleaned
-        assert "flask:flask/security.py:fake_fn:99" not in cleaned
+    def test_invalid_labels_are_ignored(self):
+        assert resolve_citations("Claim [S5].", self._two_chunks()) == []
+
+    def test_grouped_labels_are_resolved(self):
+        assert resolve_citations("Claim [S1, S2].", self._two_chunks()) == [
+            "r:a.py:alpha:1",
+            "r:b.py:beta:5",
+        ]

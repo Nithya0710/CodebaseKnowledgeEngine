@@ -57,20 +57,28 @@ class TestBuildPrompt:
         assert "def bar(): pass" in prompt
         assert "def baz(): pass" in prompt
 
-    def test_chunk_id_in_prompt_matches_vector_store_scheme(self):
-        """
-        The chunk_id shown in the prompt's context block must exactly
-        match VectorStoreManager._chunk_id's format, since the
-        post-generation validator recomputes and compares against this
-        same scheme — any mismatch here would make every citation
-        appear hallucinated even when correct.
-        """
+    def test_chunks_are_labeled_in_order(self):
+        chunks = [
+            (make_chunk(name="foo", code_text="def foo(): pass"), 0.9, -2.0),
+            (make_chunk(name="bar", code_text="def bar(): pass"), 0.8, -3.0),
+        ]
+        prompt = build_prompt("question", chunks)
+        assert prompt.index("[S1]") < prompt.index("def foo(): pass")
+        assert prompt.index("[S2]") < prompt.index("def bar(): pass")
+        assert prompt.index("def foo(): pass") < prompt.index("[S2]")
+
+    def test_prompt_states_valid_label_range(self):
+        chunks = [(make_chunk(name=f"f{i}"), 0.9, -2.0) for i in range(3)]
+        prompt = build_prompt("question", chunks)
+        assert "S1 through S3" in prompt
+
+    def test_prompt_does_not_expose_raw_chunk_ids(self):
+        """The model should never see the long ID string, since imprecise
+        copying of it was the failure this design removes."""
         from src.retrieval.vector_store import VectorStoreManager
         chunk = make_chunk(name="add_url_rule", file_path="flask/app.py", repo_name="flask", start_line=10)
-        expected_id = VectorStoreManager._chunk_id(chunk)
-
         prompt = build_prompt("question", [(chunk, 0.9, -2.0)])
-        assert expected_id in prompt
+        assert VectorStoreManager._chunk_id(chunk) not in prompt
 
 
 class TestGenerateStreaming:

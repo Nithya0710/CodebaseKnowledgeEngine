@@ -13,46 +13,42 @@ GENERATION_TEMPERATURE = 0.1
 
 def build_prompt(question: str, ranked_chunks: list[tuple[CodeChunk, float, float]]) -> str:
     """
-    Build a generation prompt that requires the model to cite every
-    factual claim inline as [cite: chunk_id].
+    Build a generation prompt in which each retrieved chunk gets a short
+    positional label ([S1], [S2], ...) and the model must cite by label.
 
-    chunk_id is computed via VectorStoreManager._chunk_id — the SAME
-    deterministic ID scheme used everywhere else in this project since
-    Day 6 — so the post-generation guardrail can independently recompute
-    each retrieved chunk's ID and directly string-compare it against
-    whatever the model cites, with no fuzzy matching required.
-
-    Uses a deliberately SIMPLE citation format ([cite: chunk_id], not a
-    multi-field bracket structure) after finding that llama3.2:3b did
-    not reliably reproduce a more complex [source: ..., file: ..., 
-    lines: ...] format — small local models are less reliable at
-    multi-field structured output than large hosted models, so the
-    format was simplified to something more mechanically reproducible
-    rather than switching away from local generation.
+    Earlier versions asked the model to copy a long chunk_id string
+    (repo:path:name:line) verbatim. llama3.2:3b reliably identified the
+    right function but kept reproducing the string imprecisely (e.g. line
+    273 -> 274). A short label is trivial to copy exactly, and the label
+    -> chunk_id mapping is done deterministically in code
+    (guardrails.resolve_citations), so the model never handles the long ID.
+    The 'S' prefix avoids collisions with ordinary code in answers such as
+    args[0], which a bare [1] label would collide with.
     """
+    n = len(ranked_chunks)
     context_blocks = []
-    for chunk, score, _ in ranked_chunks:
-        chunk_id = VectorStoreManager._chunk_id(chunk)
+    for i, (chunk, _, _) in enumerate(ranked_chunks, start=1):
         context_blocks.append(
-            f"[chunk_id: {chunk_id}]\n"
-            f"# {chunk.file_path} :: {chunk.name} (lines {chunk.start_line}-{chunk.end_line})\n"
+            f"[S{i}] {chunk.file_path} :: {chunk.name} "
+            f"(lines {chunk.start_line}-{chunk.end_line})\n"
             f"{chunk.code_text}"
         )
     context = "\n\n".join(context_blocks)
 
+    label_range = f"S1 through S{n}" if n else "none (no context was provided)"
+
     prompt = (
         "You are a helpful assistant answering questions about a Python codebase.\n"
         "Use ONLY the code context below to answer the question. Every factual "
-        "claim you make MUST be followed by an inline citation in EXACTLY this "
-        "format: [cite: chunk_id]\n"
-        "Use the exact chunk_id shown in brackets above each context block — copy "
-        "it exactly, character for character. Do not invent, modify, or guess at "
-        "a chunk_id.\n"
+        "claim you make MUST be followed by a citation giving the label of the "
+        "source it came from, written exactly like [S1] or [S2].\n"
+        f"Valid labels are: {label_range}. Do not invent labels, and never "
+        "write file paths or line numbers inside a citation.\n"
         "If the context does not contain enough information to answer, say so "
         "plainly rather than guessing.\n\n"
         f"CONTEXT:\n{context}\n\n"
         f"QUESTION: {question}\n\n"
-        "ANSWER (with inline citations):"
+        "ANSWER (with citations like [S1]):"
     )
     return prompt
 

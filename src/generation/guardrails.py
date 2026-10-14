@@ -71,7 +71,7 @@ def check_context_sufficiency(
     return None
 
 
-CITATION_PATTERN = re.compile(r"\[(?:cite|chunk_id):\s*([^\]]+)\]")
+CITATION_GROUP_PATTERN = re.compile(r"\[(S\d+(?:\s*,\s*S\d+)*)\]")
 
 
 def validate_citations(
@@ -79,45 +79,60 @@ def validate_citations(
     ranked_chunks: list[tuple[CodeChunk, float, float]],
 ) -> str:
     """
-    Post-generation guardrail: parse every citation tag out of the
-    generated answer — accepting both [cite: chunk_id] (the instructed
-    format) and [chunk_id: chunk_id] (a format-drift variant observed
-    in real generations, where the model echoed the label used in the
-    prompt's context blocks instead of the instructed citation wrapper)
-    — verify each cited chunk_id actually exists in the retrieved
-    context set, and strip any citation that doesn't (a hallucinated
-    citation), logging each incident.
+    Post-generation guardrail: find every citation label ([S1], or a group
+    like [S1, S3]) in the answer and verify each label refers to a chunk
+    that was actually given to the model, i.e. 1 <= N <= len(ranked_chunks).
+    Out-of-range labels are hallucinated citations: they are stripped
+    (the rest of a mixed group survives) and each incident is logged.
 
-    This catches a DIFFERENT failure mode than the pre-generation
-    guardrail: even when there IS enough good context overall (the
-    pre-generation check passed), the model can still fabricate a
-    citation to a chunk_id that sounds plausible but was never actually
-    retrieved. Only the citation tag itself is removed, not the
-    surrounding sentence, since the underlying factual claim may still
-    be accurate even if the model got the specific citation wrong.
+    Only the citation tag is removed, never the surrounding sentence,
+    since a wrong citation does not imply a wrong claim.
 
-    After stripping, collapses any resulting double-space and removes a
-    stray space left before trailing punctuation (e.g. "internally ."
-    becomes "internally."), so a stripped citation doesn't leave visible
-    formatting artifacts in the final answer.
+    After stripping, collapses double spaces and removes a stray space
+    before punctuation so removals leave no visible artifacts.
     """
-    valid_ids = {VectorStoreManager._chunk_id(chunk) for chunk, _, _ in ranked_chunks}
+    max_label = len(ranked_chunks)
 
-    def replace_if_invalid(match: re.Match) -> str:
-        cited_id = match.group(1).strip()
-        if cited_id in valid_ids:
-            return match.group(0)  # leave valid citations untouched
+    def rewrite(match: re.Match) -> str:
+        labels = [part.strip() for part in match.group(1).split(",")]
+        valid = []
+        for label in labels:
+            if 1 <= int(label[1:]) <= max_label:
+                valid.append(label)
+            else:
+                logger.warning(
+                    f"Hallucinated citation detected and stripped: [{label}] "
+                    f"is outside the {max_label} provided sources"
+                )
+        return f"[{', '.join(valid)}]" if valid else ""
 
-        logger.warning(
-            f"Hallucinated citation detected and stripped: {cited_id!r} "
-            f"was not in the retrieved context set"
-        )
-        return ""
-
-    cleaned = CITATION_PATTERN.sub(replace_if_invalid, answer)
-    cleaned = re.sub(r"\s{2,}", " ", cleaned)          # collapse double+ spaces
-    cleaned = re.sub(r"\s+([.,!?;:])", r"\1", cleaned)  # remove space before punctuation
+    cleaned = CITATION_GROUP_PATTERN.sub(rewrite, answer)
+    cleaned = re.sub(r"\s{2,}", " ", cleaned)
+    cleaned = re.sub(r"\s+([.,!?;:])", r"\1", cleaned)
     return cleaned
+
+
+def resolve_citations(
+    answer: str,
+    ranked_chunks: list[tuple[CodeChunk, float, float]],
+) -> list[str]:
+    """
+    Map the valid citation labels in an answer back to real chunk_ids
+    (VectorStoreManager._chunk_id), in order of first appearance and
+    de-duplicated. This is the deterministic label -> chunk_id step that
+    replaces asking the model to copy long IDs, and it is what an API
+    layer would use to build a 'sources' list. Out-of-range labels are
+    ignored here (validate_citations is responsible for stripping them).
+    """
+    chunk_ids: list[str] = []
+    for match in CITATION_GROUP_PATTERN.finditer(answer):
+        for label in match.group(1).split(","):
+            n = int(label.strip()[1:])
+            if 1 <= n <= len(ranked_chunks):
+                chunk_id = VectorStoreManager._chunk_id(ranked_chunks[n - 1][0])
+                if chunk_id not in chunk_ids:
+                    chunk_ids.append(chunk_id)
+    return chunk_ids
 
 
 if __name__ == '__main__':
