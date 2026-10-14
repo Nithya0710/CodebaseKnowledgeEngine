@@ -1,36 +1,36 @@
 [
     {
         "question": "Where is authentication middleware defined and what does it check?",
-        "ground_truth_answer": "There is no single dedicated 'authentication middleware' file in this corpus. The most relevant authentication logic is httpx's BaseClient.auth method, which returns an Auth instance used when no request-level auth is passed. requests' auth.py module documents authentication handlers for that library. Separately, werkzeug has real WSGI middleware infrastructure: SharedDataMiddleware (applied via the make_app factory in examples/coolmagic/application.py), ProxyFix (middleware/proxy_fix.py, adjusts WSGI environ based on X-Forwarded- headers from proxies), and DispatcherMiddleware (middleware/dispatcher.py, dispatches to multiple WSGI apps mounted at different paths) — but none of this middleware performs authentication checks specifically.",
+        "ground_truth_answer": "There is no single dedicated 'authentication middleware' file in this corpus. The most relevant authentication logic is httpx's BaseClient.auth method, which returns an Auth instance used when no request-level auth is passed. requests' auth.py module documents authentication handlers for that library. Separately, werkzeug has real WSGI middleware infrastructure: SharedDataMiddleware (applied via the make_app factory in examples/coolmagic/application.py), ProxyFix (middleware/proxy_fix.py, adjusts WSGI environ based on X-Forwarded- headers from proxies), and DispatcherMiddleware (middleware/dispatcher.py, dispatches to multiple WSGI apps mounted at different paths) \u2014 but none of this middleware performs authentication checks specifically.",
         "ground_truth_context_chunk_ids": [
             "httpx:data/repos/httpx/httpx/_client.py:BaseClient.auth:273",
             "werkzeug:data/repos/werkzeug/examples/coolmagic/application.py:application_docstring:1",
             "werkzeug:data/repos/werkzeug/src/werkzeug/middleware/proxy_fix.py:proxy_fix_docstring:1",
             "requests:data/repos/requests/src/requests/auth.py:auth_docstring:1",
             "werkzeug:data/repos/werkzeug/src/werkzeug/middleware/dispatcher.py:dispatcher_docstring:1"
-        ]   
+        ]
     },
     {
         "question": "How does Flask handle routing for a URL?",
         "ground_truth_answer": "Flask handles routing in two distinct directions that are easy to conflate: (1) matching an INCOMING request URL to a view function, handled by Flask.dispatch_request and werkzeug's routing Map/Rule system underneath it, and (2) BUILDING a URL for a given endpoint, handled by Flask.url_for and the helpers.url_for function, which use a URL adapter to construct the string. url_for does not match incoming requests; it generates URLs pointing to registered endpoints.",
         "ground_truth_context_chunk_ids": [
-          "flask:data/repos/flask/src/flask/app.py:Flask.url_for:1102",
-          "flask:data/repos/flask/src/flask/helpers.py:url_for:200",
-          "flask:data/repos/flask/src/flask/app.py:Flask.dispatch_request:966"
+            "flask:data/repos/flask/src/flask/app.py:Flask.url_for:1102",
+            "flask:data/repos/flask/src/flask/helpers.py:url_for:200",
+            "flask:data/repos/flask/src/flask/app.py:Flask.dispatch_request:966"
         ]
     },
-      {
+    {
         "question": "How does the rate limiter work and which files use it?",
-        "ground_truth_answer": "This corpus does not contain a rate limiter. The closest related code is werkzeug's LimitedStream class (werkzeug/wsgi.py), which limits how many BYTES can be read from a request stream (protecting against oversized request bodies), not how many REQUESTS occur over time — that is a request-size limit, not a rate limit. httpx's Limits class in _config.py configures connection pool limits (max connections, keepalive), which is also unrelated to rate limiting.",
+        "ground_truth_answer": "This corpus does not contain a rate limiter. The closest related code is werkzeug's LimitedStream class (werkzeug/wsgi.py), which limits how many BYTES can be read from a request stream (protecting against oversized request bodies), not how many REQUESTS occur over time \u2014 that is a request-size limit, not a rate limit. httpx's Limits class in _config.py configures connection pool limits (max connections, keepalive), which is also unrelated to rate limiting.",
         "ground_truth_context_chunk_ids": [
-          "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.on_exhausted:482",
-          "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.exhaust:519",
-          "httpx:data/repos/httpx/httpx/_config.py:Limits:159"
+            "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.on_exhausted:482",
+            "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.exhaust:519",
+            "httpx:data/repos/httpx/httpx/_config.py:Limits:159"
         ]
-      },
+    },
     {
         "question": "What happens when a payment fails? Trace the full code path.",
-        "ground_truth_answer": "This corpus contains no payment processing logic at all — no payment function, class, or module exists in any of the 8 repos. There is no real code path to trace. The pipeline should state this directly rather than fabricating a plausible-sounding trace through unrelated exception-handling code (e.g. Flask's App.trap_http_exception), which addresses generic HTTP exceptions, not payment failures specifically.",
+        "ground_truth_answer": "This corpus contains no payment processing logic at all \u2014 no payment function, class, or module exists in any of the 8 repos. There is no real code path to trace. The pipeline should state this directly rather than fabricating a plausible-sounding trace through unrelated exception-handling code (e.g. Flask's App.trap_http_exception), which addresses generic HTTP exceptions, not payment failures specifically.",
         "ground_truth_context_chunk_ids": []
     },
     {
@@ -42,7 +42,7 @@
     },
     {
         "question": "How does Flask's Blueprint class relate to Scaffold, and what does it inherit or override?",
-        "ground_truth_answer": "Blueprint is a subclass of Scaffold (class Blueprint(Scaffold)). Scaffold provides the base add_url_rule method, which Blueprint overrides: instead of directly registering a rule, Blueprint.add_url_rule wraps the registration in a deferred function via self.record(...), since a blueprint has no application to register routes on until it's actually registered via register_blueprint. When the blueprint IS registered, BlueprintSetupState.add_url_rule (a separate helper class, not Blueprint or Scaffold itself) applies the blueprint's url_prefix and name to the rule, then calls the real app.add_url_rule to finalize registration. Scaffold's own add_url_rule (as seen directly in the corpus) raises NotImplementedError, meaning Scaffold itself is not meant to be used directly — Blueprint and Flask both provide their own working implementations.",
+        "ground_truth_answer": "Blueprint is a subclass of Scaffold (class Blueprint(Scaffold)). Scaffold provides the base add_url_rule method, which Blueprint overrides: instead of directly registering a rule, Blueprint.add_url_rule wraps the registration in a deferred function via self.record(...), since a blueprint has no application to register routes on until it's actually registered via register_blueprint. When the blueprint IS registered, BlueprintSetupState.add_url_rule (a separate helper class, not Blueprint or Scaffold itself) applies the blueprint's url_prefix and name to the rule, then calls the real app.add_url_rule to finalize registration. Scaffold's own add_url_rule (as seen directly in the corpus) raises NotImplementedError, meaning Scaffold itself is not meant to be used directly \u2014 Blueprint and Flask both provide their own working implementations.",
         "ground_truth_context_chunk_ids": [
             "flask:data/repos/flask/src/flask/sansio/blueprints.py:Blueprint.add_url_rule:413",
             "flask:data/repos/flask/src/flask/sansio/blueprints.py:BlueprintSetupState.add_url_rule:87",
@@ -56,6 +56,18 @@
             "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.on_exhausted:482",
             "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.on_disconnect:497",
             "werkzeug:data/repos/werkzeug/src/werkzeug/wsgi.py:LimitedStream.exhaust:519"
+        ]
+    },
+    {
+        "question": "Find all places add_url_rule is called and explain the contexts.",
+        "ground_truth_answer": "add_url_rule is called in six places in Flask. Scaffold.route, the @app.route decorator, calls self.add_url_rule(rule, endpoint, f, **options) to register the decorated view. Flask.__init__ calls self.add_url_rule to register the 'static' endpoint for serving static files, and Blueprint.register does the same for a blueprint's own static folder via state.add_url_rule. Blueprint.add_url_rule does not register immediately: it defers the call with self.record(lambda s: s.add_url_rule(...)), and when the blueprint is registered, BlueprintSetupState.add_url_rule applies the url_prefix and endpoint prefix and then calls self.app.add_url_rule. Finally, the tutorial's create_app factory calls app.add_url_rule('/', endpoint='index') to map the root URL to the blog index.",
+        "ground_truth_context_chunk_ids": [
+            "flask:data/repos/flask/src/flask/sansio/scaffold.py:Scaffold.route:336",
+            "flask:data/repos/flask/src/flask/app.py:Flask.__init__:310",
+            "flask:data/repos/flask/src/flask/sansio/blueprints.py:Blueprint.register:273",
+            "flask:data/repos/flask/src/flask/sansio/blueprints.py:Blueprint.add_url_rule:413",
+            "flask:data/repos/flask/src/flask/sansio/blueprints.py:BlueprintSetupState.add_url_rule:87",
+            "flask:data/repos/flask/examples/tutorial/flaskr/__init__.py:create_app:6"
         ]
     }
 ]

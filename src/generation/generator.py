@@ -72,7 +72,7 @@ def generate_streaming(question: str, ranked_chunks: list[tuple[CodeChunk, float
                 "model": settings.ollama_model,
                 "prompt": prompt,
                 "stream": True,
-                "options": {"temperature": GENERATION_TEMPERATURE},
+                "options": {"temperature": GENERATION_TEMPERATURE, "num_ctx": settings.ollama_num_ctx},
             },
             stream=True,
             timeout=120,
