@@ -1,9 +1,9 @@
-import pytest
 from src.generation.guardrails import (
     check_context_sufficiency,
     validate_citations,
     InsufficientContextResponse,
     resolve_citations,
+    validate_citations_with_counts,
 )
 from src.retrieval.rerank import RAW_SCORE_GUARDRAIL_THRESHOLD
 from src.chunking.ast_parser import CodeChunk
@@ -113,6 +113,55 @@ class TestPostGenerationCitationValidator:
     def test_answer_with_no_citations_is_unchanged(self):
         answer = "This is a plain answer with no citations at all."
         assert validate_citations(answer, self._two_chunks()) == answer
+
+    def test_valid_comma_group_is_kept_intact(self):
+        answer = "Both functions register routes [S1, S2]."
+        assert validate_citations(answer, self._two_chunks()) == answer
+
+    def test_stripped_tag_mid_sentence_leaves_single_space(self):
+        answer = "It checks auth [S9] before dispatch [S2]."
+        cleaned = validate_citations(answer, self._two_chunks())
+        assert cleaned == "It checks auth before dispatch [S2]."
+
+    def test_stripped_tag_at_line_start_leaves_no_leading_space(self):
+        answer = "[S9] Flask routes requests. More detail [S1]."
+        cleaned = validate_citations(answer, self._two_chunks())
+        assert cleaned == "Flask routes requests. More detail [S1]."
+
+    def test_layout_and_code_indentation_are_preserved(self):
+        """Regression: an earlier version collapsed all whitespace in the
+        answer, flattening paragraphs and code-block indentation (which
+        would make every multi-line snippet fail a syntax check)."""
+        answer = (
+            "Paragraph one [S9].\n\n"
+            "```python\n"
+            "def f(x):\n"
+            "    if x :\n"
+            "        return 1\n"
+            "```\n"
+            "Paragraph two [S1]."
+        )
+        expected = (
+            "Paragraph one.\n\n"
+            "```python\n"
+            "def f(x):\n"
+            "    if x :\n"
+            "        return 1\n"
+            "```\n"
+            "Paragraph two [S1]."
+        )
+        assert validate_citations(answer, self._two_chunks()) == expected
+
+    def test_counts_valid_and_stripped_labels(self):
+        answer = "A [S1]. B [S1, S9]. C [S7]. D [S2]."
+        result = validate_citations_with_counts(answer, self._two_chunks())
+        assert result.n_valid_citations == 3
+        assert result.n_stripped_citations == 2
+        assert result.answer == "A [S1]. B [S1]. C. D [S2]."
+
+    def test_counts_are_zero_without_citations(self):
+        result = validate_citations_with_counts("No citations here.", self._two_chunks())
+        assert (result.n_valid_citations, result.n_stripped_citations) == (0, 0)
 
 
 class TestResolveCitations:

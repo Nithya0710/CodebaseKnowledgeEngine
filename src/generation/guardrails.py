@@ -73,11 +73,25 @@ def check_context_sufficiency(
 
 CITATION_GROUP_PATTERN = re.compile(r"\[(S\d+(?:\s*,\s*S\d+)*)\]")
 
+# Same group, plus the horizontal whitespace on either side, so that when a
+# tag is stripped its surrounding spaces can be repaired locally. Newlines
+# are deliberately excluded: they belong to the answer's layout.
+_CITATION_WITH_SPACING = re.compile(
+    r"(?P<lead>[ \t]*)\[(?P<labels>S\d+(?:\s*,\s*S\d+)*)\](?P<trail>[ \t]*)"
+)
 
-def validate_citations(
+
+class CitationValidation(BaseModel):
+    """Result of the post-generation citation check on one answer."""
+    answer: str
+    n_valid_citations: int
+    n_stripped_citations: int
+
+
+def validate_citations_with_counts(
     answer: str,
     ranked_chunks: list[tuple[CodeChunk, float, float]],
-) -> str:
+) -> CitationValidation:
     """
     Post-generation guardrail: find every citation label ([S1], or a group
     like [S1, S3]) in the answer and verify each label refers to a chunk
@@ -88,28 +102,51 @@ def validate_citations(
     Only the citation tag is removed, never the surrounding sentence,
     since a wrong citation does not imply a wrong claim.
 
-    After stripping, collapses double spaces and removes a stray space
-    before punctuation so removals leave no visible artifacts.
+    Whitespace is repaired ONLY where a whole tag was removed (so
+    "auth [S7]." becomes "auth.", not "auth ."). An earlier version
+    collapsed whitespace across the entire answer, which flattened
+    paragraph breaks and the indentation of code blocks in the answer.
+
+    Counts are returned so evaluation can report hallucinated citations
+    per answer without scraping logs.
     """
     max_label = len(ranked_chunks)
+    n_valid = 0
+    n_stripped = 0
 
     def rewrite(match: re.Match) -> str:
-        labels = [part.strip() for part in match.group(1).split(",")]
+        nonlocal n_valid, n_stripped
+        labels = [part.strip() for part in match.group("labels").split(",")]
         valid = []
         for label in labels:
             if 1 <= int(label[1:]) <= max_label:
                 valid.append(label)
             else:
+                n_stripped += 1
                 logger.warning(
                     f"Hallucinated citation detected and stripped: [{label}] "
                     f"is outside the {max_label} provided sources"
                 )
-        return f"[{', '.join(valid)}]" if valid else ""
+        n_valid += len(valid)
+        lead, trail = match.group("lead"), match.group("trail")
+        if valid:
+            return f"{lead}[{', '.join(valid)}]{trail}"
+        # Whole tag removed: keep one space only if it separated two words.
+        return " " if lead and trail else ""
 
-    cleaned = CITATION_GROUP_PATTERN.sub(rewrite, answer)
-    cleaned = re.sub(r"\s{2,}", " ", cleaned)
-    cleaned = re.sub(r"\s+([.,!?;:])", r"\1", cleaned)
-    return cleaned
+    cleaned = _CITATION_WITH_SPACING.sub(rewrite, answer)
+    return CitationValidation(
+        answer=cleaned, n_valid_citations=n_valid, n_stripped_citations=n_stripped
+    )
+
+
+def validate_citations(
+    answer: str,
+    ranked_chunks: list[tuple[CodeChunk, float, float]],
+) -> str:
+    """Return the answer with hallucinated citation labels stripped.
+    See validate_citations_with_counts for the full behavior."""
+    return validate_citations_with_counts(answer, ranked_chunks).answer
 
 
 def resolve_citations(
@@ -137,40 +174,6 @@ def resolve_citations(
 
 if __name__ == '__main__':
     setup_logging()
-    from src.chunking.ast_parser import CodeChunk
-
-    # testing context sufficiency guardrail
-    # strong_chunks = [
-    #     (CodeChunk(repo_name="flask", file_path="a.py", chunk_type="function",
-    #                 name="foo", start_line=1, end_line=2, code_text="def foo(): pass", docstring=None), 0.91),
-    # ]
-    # weak_chunks = [
-    #     (CodeChunk(repo_name="flask", file_path="a.py", chunk_type="function",
-    #                 name="foo", start_line=1, end_line=2, code_text="def foo(): pass", docstring=None), 0.42),
-    # ]
-
-    # print("Strong context:", check_context_sufficiency("real question", strong_chunks))
-    # print("Weak context:", check_context_sufficiency("what's the weather today", weak_chunks))
-    # print("No chunks:", check_context_sufficiency("totally unrelated", []))
-
-    # testing citation validation guardrail
-    # ranked_chunks = [
-    #     (CodeChunk(repo_name="flask", file_path="flask/app.py", chunk_type="function",
-    #                 name="add_url_rule", start_line=10, end_line=20,
-    #                 code_text="def add_url_rule(...): ...", docstring=None), 0.91),
-    # ]
-
-    # fake_answer = (
-    #     "The add_url_rule function registers a route "
-    #     "[cite: flask:flask/app.py:add_url_rule:10]. "
-    #     "It also handles authentication internally "
-    #     "[cite: flask:flask/security.py:check_auth:5]."
-    # )
-
-    # cleaned = validate_citations(fake_answer, ranked_chunks)
-    # print("BEFORE:", fake_answer)
-    # print("AFTER: ", cleaned)
-
     # testing guardrails with the 5 baseline questions and one extra question which is out of context
     from pathlib import Path
     import json

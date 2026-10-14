@@ -1,10 +1,8 @@
 import requests
 import json
 from src.config import settings
-from src.retrieval.vector_store import VectorStoreManager
 from src.chunking.ast_parser import CodeChunk
 from src.logging_config import get_logger
-from src.logging_config import setup_logging
 
 logger = get_logger(__name__)
 
@@ -109,21 +107,3 @@ def generate(question: str, ranked_chunks: list[tuple[CodeChunk, float, float]])
     token stream.
     """
     return "".join(generate_streaming(question, ranked_chunks))
-
-
-# if __name__=='__main__':
-    # testing generation with a sample question and dummy ranked chunks
-    # setup_logging()
-    # from src.chunking.ast_parser import CodeChunk
-
-    # fake_chunks = [
-    #     (CodeChunk(
-    #         repo_name="flask", file_path="flask/app.py", chunk_type="function",
-    #         name="add_url_rule", start_line=10, end_line=20,
-    #         code_text="def add_url_rule(self, rule, endpoint=None, view_func=None):\n    ...",
-    #         docstring=None,
-    #     ), 0.91),
-    # ]
-
-    # answer = generate("What does add_url_rule do?", fake_chunks)
-    # print(answer)

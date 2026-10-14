@@ -1,5 +1,3 @@
-import pytest
-import json
 from src.generation.generator import build_prompt, generate, generate_streaming
 from src.chunking.ast_parser import CodeChunk
 
@@ -40,6 +38,7 @@ class TestBuildPrompt:
         prompt = build_prompt("some question", [])
         assert "CONTEXT:" in prompt
         assert "some question" in prompt
+        assert "Valid labels are: none (no context was provided)" in prompt
 
     def test_multiple_chunks_all_included_in_context(self):
         """

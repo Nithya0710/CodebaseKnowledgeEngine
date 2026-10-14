@@ -5,7 +5,7 @@ from src.retrieval.hybrid import hybrid_retrieve
 from src.retrieval.augment import augment_with_related_files
 from src.retrieval.rerank import rerank
 from src.generation.generator import generate
-from src.generation.guardrails import check_context_sufficiency, validate_citations
+from src.generation.guardrails import check_context_sufficiency, validate_citations_with_counts
 from src.retrieval.vector_store import VectorStoreManager
 from src.logging_config import get_logger, setup_logging
 
@@ -48,20 +48,26 @@ def run_pipeline_on_test_set(test_set_path: str, repo_names: list[str], repo_roo
                 "ground_truth_context_chunk_ids": entry["ground_truth_context_chunk_ids"],
                 "retrieved_chunk_ids": [],
                 "blocked": True,
+                "raw_answer": None,
+                "n_valid_citations": 0,
+                "n_stripped_citations": 0,
             })
             continue
 
         raw_answer = generate(question, top5)
-        validated_answer = validate_citations(raw_answer, top5)
+        validation = validate_citations_with_counts(raw_answer, top5)
 
         records.append({
             "question": question,
-            "answer": validated_answer,
+            "answer": validation.answer,
             "contexts": [chunk.code_text for chunk, _, _ in top5],
             "ground_truth": entry["ground_truth_answer"],
             "ground_truth_context_chunk_ids": entry["ground_truth_context_chunk_ids"],
             "retrieved_chunk_ids": [VectorStoreManager._chunk_id(chunk) for chunk, _, _ in top5],
             "blocked": False,
+            "raw_answer": raw_answer,
+            "n_valid_citations": validation.n_valid_citations,
+            "n_stripped_citations": validation.n_stripped_citations,
         })
 
     return records
@@ -83,4 +89,7 @@ if __name__ == '__main__':
     print(f"\nRan pipeline on {len(records)} questions, saved to {output_path}")
     for r in records:
         status = "BLOCKED" if r["blocked"] else "ANSWERED"
-        print(f"  [{status}] {r['question'][:60]}...")
+        print(f"  [{status}] valid={r['n_valid_citations']} stripped={r['n_stripped_citations']} {r['question'][:60]}...")
+    answered = [r for r in records if not r["blocked"]]
+    print(f"Hallucinated citations stripped: {sum(r['n_stripped_citations'] for r in records)} total; "
+          f"answers with zero valid citations: {sum(1 for r in answered if r['n_valid_citations'] == 0)}/{len(answered)}")
