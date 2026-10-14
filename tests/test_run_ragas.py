@@ -8,6 +8,7 @@ from src.eval import run_ragas
 from src.eval.gold_set import BASELINE5_QUESTIONS, load_gold_set
 from src.eval.run_ragas import (
     METRIC_COLUMNS,
+    Judge,
     PipelineRecord,
     decision_rule,
     id_retrieval_metrics,
@@ -76,12 +77,17 @@ class TestRecordsToDataset:
         assert len(dataset.samples) == 0
 
 
+def fake_judge(metric_names=METRIC_COLUMNS, budget=None):
+    return Judge(llm=None, embeddings=None, label="fake", metrics=[], metric_names=list(metric_names),
+                 run_config=None, budget=budget)
+
+
 class TestScoreRecords:
     def test_all_blocked_never_calls_the_judge(self, monkeypatch):
         def fail(*args, **kwargs):
             raise AssertionError("evaluate must not run when every record is blocked")
         monkeypatch.setattr(run_ragas, "evaluate", fail)
-        rows = score_records([make_record(blocked=True)], llm=None, embeddings=None, judge_label="fake")
+        rows = score_records([make_record(blocked=True)], fake_judge())
         assert rows[0]["blocked"] is True
         assert all(rows[0][m] is None for m in METRIC_COLUMNS)
 
@@ -96,7 +102,7 @@ class TestScoreRecords:
                 ])
         monkeypatch.setattr(run_ragas, "evaluate", lambda *a, **k: FakeResult())
         records = [make_record("q1"), make_record("q2", blocked=True), make_record("q3")]
-        rows = score_records(records, llm=None, embeddings=None, judge_label="fake")
+        rows = score_records(records, fake_judge())
 
         assert rows[0]["faithfulness"] == 0.9 and rows[0]["context_precision"] == 0.7
         assert all(rows[1][m] is None for m in METRIC_COLUMNS)
@@ -104,6 +110,25 @@ class TestScoreRecords:
         assert rows[2]["answer_relevancy"] == 0.5
         assert rows[0]["judge"] == "fake"
         assert rows[0]["id_precision"] == 0.5 and rows[0]["id_recall"] == 1.0
+
+
+    def test_metrics_not_scored_by_judge_stay_empty(self, monkeypatch):
+        class FakeResult:
+            def to_pandas(self):
+                return pd.DataFrame([{"faithfulness": 0.9, "answer_relevancy": 0.8}])
+        monkeypatch.setattr(run_ragas, "evaluate", lambda *a, **k: FakeResult())
+        rows = score_records([make_record("q1")], fake_judge(["faithfulness", "answer_relevancy"]))
+        assert rows[0]["faithfulness"] == 0.9
+        assert rows[0]["context_precision"] is None and rows[0]["context_recall"] is None
+
+    def test_exhausted_budget_raises_instead_of_returning_partial_rows(self, monkeypatch):
+        from src.llm.rate_limit import BudgetExceeded
+
+        class ExhaustedBudget:
+            exhausted = True
+        monkeypatch.setattr(run_ragas, "evaluate", lambda *a, **k: None)
+        with pytest.raises(BudgetExceeded):
+            score_records([make_record("q1")], fake_judge(budget=ExhaustedBudget()))
 
 
 class TestJudgeUsability:
@@ -128,6 +153,11 @@ class TestJudgeUsability:
         wrong = make_row(faithfulness=0.0, answer_relevancy=0.1)
         fired = judge_usability(good, wrong)
         assert any(f.startswith("(a)") and "50%" in f for f in fired)
+
+    def test_unscored_context_metrics_ignored_when_judge_does_not_score_them(self):
+        good = make_row(faithfulness=1.0, answer_relevancy=0.9)
+        wrong = make_row(faithfulness=0.0, answer_relevancy=0.1)
+        assert judge_usability(good, wrong, ["faithfulness", "answer_relevancy"]) == []
 
     def test_unscored_answer_metric_is_not_comparable(self):
         good = make_row(faithfulness=None, answer_relevancy=0.9, context_precision=1.0, context_recall=1.0)

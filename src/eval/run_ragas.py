@@ -10,6 +10,7 @@ import argparse
 import csv
 import json
 import math
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -98,16 +99,40 @@ def records_to_dataset(records: list[PipelineRecord]) -> tuple[EvaluationDataset
     return EvaluationDataset(samples=samples), included
 
 
-def build_judge() -> tuple[Any, Any, str]:
-    """Build the judge LLM and embeddings from settings.
+@dataclass
+class Judge:
+    """Everything needed to score with one judge configuration."""
+    llm: Any
+    embeddings: Any
+    label: str
+    metrics: list[Any]
+    metric_names: list[str]
+    run_config: RunConfig
+    budget: Any = None  # UsageBudget for hosted judges, None for local
+    notes: list[str] = field(default_factory=list)
 
-    Returns (ragas_llm, ragas_embeddings, judge_label). The judge is injected
-    into ragas.evaluate explicitly; RAGAS would otherwise default to OpenAI.
-    Heavy imports are local so unit tests never load a model.
+
+def build_judge() -> Judge:
+    """Build the judge LLM, embeddings and metric set from settings.
+
+    The judge is injected into ragas.evaluate explicitly; RAGAS would
+    otherwise default to OpenAI. Heavy imports are local so unit tests
+    never load a model.
+
+    The local Ollama judge scores all four metrics. The Groq judge is
+    deliberately cut down to stay inside the free tier: faithfulness and
+    answer_relevancy only (the exact ID columns already measure retrieval,
+    and LLM context precision alone costs one call per retrieved chunk),
+    one question regeneration for relevancy instead of three, retries only
+    on transient errors, and a disk cache so no identical prompt is sent twice.
     """
     from langchain_huggingface import HuggingFaceEmbeddings
     from ragas.embeddings import LangchainEmbeddingsWrapper
     from ragas.llms import LangchainLLMWrapper
+
+    embeddings = LangchainEmbeddingsWrapper(
+        HuggingFaceEmbeddings(model_name=f"sentence-transformers/{settings.embedding_model}")
+    )
 
     if settings.ragas_judge_backend == "ollama":
         from langchain_ollama import ChatOllama
@@ -118,28 +143,45 @@ def build_judge() -> tuple[Any, Any, str]:
             num_ctx=settings.ollama_num_ctx,
             seed=42,
         )
-        label = f"ollama:{settings.ragas_judge_model}"
-    elif settings.ragas_judge_backend == "groq":
-        if not settings.groq_api_key or not settings.groq_judge_model:
-            raise RuntimeError("Groq judge selected but GROQ_API_KEY or GROQ_JUDGE_MODEL is not set in .env")
-        try:
-            from langchain_groq import ChatGroq
-        except ImportError as e:
-            raise RuntimeError("Groq judge selected but langchain-groq is not installed") from e
-        chat = ChatGroq(model=settings.groq_judge_model, api_key=settings.groq_api_key, temperature=0)
-        label = f"groq:{settings.groq_judge_model}"
-    else:
-        raise RuntimeError(f"Unknown RAGAS_JUDGE_BACKEND {settings.ragas_judge_backend!r}")
+        return Judge(
+            llm=LangchainLLMWrapper(chat),
+            embeddings=embeddings,
+            label=f"ollama:{settings.ragas_judge_model}",
+            metrics=[Faithfulness(), ResponseRelevancy(), LLMContextPrecisionWithReference(), LLMContextRecall()],
+            metric_names=list(METRIC_COLUMNS),
+            run_config=RunConfig(**JUDGE_RUN_CONFIG),
+        )
 
-    embeddings = HuggingFaceEmbeddings(model_name=f"sentence-transformers/{settings.embedding_model}")
-    return LangchainLLMWrapper(chat), LangchainEmbeddingsWrapper(embeddings), label
+    if settings.ragas_judge_backend == "groq":
+        import groq
+        from ragas.cache import DiskCacheBackend
+
+        from src.eval.groq_judge import JUDGE_CACHE_DIR, build_groq_chat
+
+        chat, budget = build_groq_chat()
+        transient = (groq.RateLimitError, groq.InternalServerError, groq.APIConnectionError, groq.APITimeoutError)
+        return Judge(
+            llm=LangchainLLMWrapper(chat, cache=DiskCacheBackend(JUDGE_CACHE_DIR)),
+            embeddings=embeddings,
+            label=f"groq:{settings.groq_judge_model}",
+            metrics=[Faithfulness(), ResponseRelevancy(strictness=1)],
+            metric_names=["faithfulness", "answer_relevancy"],
+            run_config=RunConfig(max_workers=1, timeout=120, max_retries=2, max_wait=60,
+                                 exception_types=transient, seed=42),
+            budget=budget,
+            notes=["answer_relevancy uses strictness=1", "context metrics not scored (see id_precision/id_recall)"],
+        )
+
+    raise RuntimeError(f"Unknown RAGAS_JUDGE_BACKEND {settings.ragas_judge_backend!r}")
 
 
-def score_records(records: list[PipelineRecord], llm: Any, embeddings: Any, judge_label: str) -> list[dict]:
-    """Run the four RAGAS metrics on answered records and return one row per record.
+def score_records(records: list[PipelineRecord], judge: Judge) -> list[dict]:
+    """Run the judge's RAGAS metrics on answered records and return one row per record.
 
-    Blocked records get empty metric cells. Exact ID precision/recall are
-    computed for every record that retrieved anything.
+    Blocked records, and metrics this judge does not score, get empty
+    cells. Exact ID precision/recall are computed for every record that
+    retrieved anything. If a hosted judge's budget runs out mid-run, this
+    raises instead of returning partially scored rows.
     """
     rows = []
     for r in records:
@@ -155,7 +197,7 @@ def score_records(records: list[PipelineRecord], llm: Any, embeddings: Any, judg
             "n_stripped_citations": r.n_stripped_citations,
             "best_raw_ce_score": r.best_raw_ce_score,
             "generation_model": r.generation_model,
-            "judge": judge_label,
+            "judge": judge.label,
         })
 
     dataset, included = records_to_dataset(records)
@@ -165,15 +207,18 @@ def score_records(records: list[PipelineRecord], llm: Any, embeddings: Any, judg
 
     result = evaluate(
         dataset,
-        metrics=[Faithfulness(), ResponseRelevancy(), LLMContextPrecisionWithReference(), LLMContextRecall()],
-        llm=llm,
-        embeddings=embeddings,
-        run_config=RunConfig(**JUDGE_RUN_CONFIG),
+        metrics=judge.metrics,
+        llm=judge.llm,
+        embeddings=judge.embeddings,
+        run_config=judge.run_config,
         show_progress=True,
     )
+    if judge.budget is not None and judge.budget.exhausted:
+        from src.llm.rate_limit import BudgetExceeded
+        raise BudgetExceeded("Judge budget exhausted during scoring; results are incomplete and were not saved")
     scored = result.to_pandas().rename(columns=_RAGAS_RENAMES)
     for pos, idx in enumerate(included):
-        for m in METRIC_COLUMNS:
+        for m in judge.metric_names:
             value = scored.iloc[pos][m]
             rows[idx][m] = None if value is None or math.isnan(value) else float(value)
     return rows
@@ -198,7 +243,7 @@ def metric_means(rows: list[dict], require_gold: bool = False) -> dict[str, floa
     return means
 
 
-def judge_usability(good: dict, wrong: dict) -> list[str]:
+def judge_usability(good: dict, wrong: dict, metrics: list[str] = METRIC_COLUMNS) -> list[str]:
     """Apply the 'judge is unusable' criteria to the smoke-test rows.
 
     (a) more than 25% of metric calls on the good and wrong samples unscored;
@@ -211,11 +256,11 @@ def judge_usability(good: dict, wrong: dict) -> list[str]:
     Returns the list of fired criteria (empty means usable).
     """
     fired = []
-    cells = [row[m] for row in (good, wrong) for m in METRIC_COLUMNS]
+    cells = [row[m] for row in (good, wrong) for m in metrics]
     nan_rate = sum(1 for v in cells if v is None) / len(cells)
     if nan_rate > NAN_RATE_LIMIT:
         fired.append(f"(a) {nan_rate:.0%} of metric calls unscored (limit {NAN_RATE_LIMIT:.0%})")
-    for m in ANSWER_METRICS:
+    for m in [m for m in ANSWER_METRICS if m in metrics]:
         g, w = good[m], wrong[m]
         if g is None or w is None:
             fired.append(f"(a) {m} not comparable: good={g}, wrong={w}")
@@ -326,30 +371,31 @@ def main() -> None:
     args = parser.parse_args()
 
     setup_logging()
-    llm, embeddings, judge_label = build_judge()
-    logger.info(f"Judge: {judge_label}; embeddings: {settings.embedding_model}")
+    judge = build_judge()
+    logger.info(f"Judge: {judge.label}; metrics: {judge.metric_names}; embeddings: {settings.embedding_model}"
+                + (f"; notes: {'; '.join(judge.notes)}" if judge.notes else ""))
 
     if args.smoke:
-        rows = score_records(smoke_records(), llm, embeddings, judge_label)
-        out = Path("eval/judge_smoke_test.csv")
+        rows = score_records(smoke_records(), judge)
+        out = Path(f"eval/judge_smoke_test_{settings.ragas_judge_backend}.csv")
         write_csv(rows, out)
         for label, row in zip(["good", "wrong", "out_of_scope"], rows):
-            logger.info(f"{label:13s} " + " ".join(f"{m}={row[m]}" for m in METRIC_COLUMNS))
-        fired = judge_usability(rows[0], rows[1])
+            logger.info(f"{label:13s} " + " ".join(f"{m}={row[m]}" for m in judge.metric_names))
+        fired = judge_usability(rows[0], rows[1], judge.metric_names)
         if fired:
-            logger.warning(f"Judge UNUSABLE ({judge_label}): " + "; ".join(fired))
+            logger.warning(f"Judge UNUSABLE ({judge.label}): " + "; ".join(fired))
         else:
-            logger.info(f"Judge usable ({judge_label}): no unusable criterion fired")
+            logger.info(f"Judge usable ({judge.label}): no unusable criterion fired")
         logger.info(f"Saved {out}")
         return
 
     records = load_records(args.records)
-    rows = score_records(records, llm, embeddings, judge_label)
+    rows = score_records(records, judge)
     write_csv(rows, args.out)
 
     answered = [r for r in rows if not r["blocked"]]
     logger.info(f"Scored {len(rows)} records ({len(answered)} answered, {len(rows) - len(answered)} blocked) "
-                f"with judge {judge_label}; unscored metric cells: {nan_count(rows)}")
+                f"with judge {judge.label}; unscored metric cells: {nan_count(rows, judge.metric_names)}")
     for m, v in metric_means(rows).items():
         logger.info(f"mean {m}: {'n/a' if v is None else f'{v:.3f}'}")
     logger.info(f"Saved {args.out}")

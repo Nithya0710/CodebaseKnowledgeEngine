@@ -19,6 +19,16 @@ class Settings(BaseSettings):
     ragas_judge_model: str = "qwen2.5:7b"
     groq_api_key: str = ""
     groq_judge_model: str = ""
+    # Free-tier limits for groq_judge_model, copied from console.groq.com >
+    # Settings > Limits. No defaults on purpose: the Groq judge refuses to run
+    # until the real numbers are set.
+    groq_rpm: int | None = None
+    groq_rpd: int | None = None
+    groq_tpm: int | None = None
+    groq_tpd: int | None = None
+    groq_limit_fraction: float = 0.5
+    groq_max_calls_per_run: int = 40
+    groq_max_output_tokens: int = 1024
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

@@ -140,3 +140,24 @@ Run on the 5 baseline questions with qwen2.5:7b generating and judging. Switch g
 4. The payment-failure question is answered (not blocked) and the answer fails to say the corpus has no payment logic, i.e. it fabricates a trace (checked by reading the answer).
 
 Criteria 1-2 average only answered questions that have gold chunks. RAGAS multiplies `answer_relevancy` by 0 for answers its judge calls "noncommittal" (e.g. "I don't know"), so an honest "this corpus contains no payment logic" can score 0 and, with n=5, could trigger a switch on its own for being honest. The payment question is covered by criterion 4 instead. This exclusion was decided before any results existed. Precondition: the judge passes the smoke test; otherwise the judge is fixed first. Caveats recorded with the result: n=5, and the same model generates and judges, which tends to inflate faithfulness and relevancy.
+
+### Judge smoke test results: why the local judge was not enough
+`qwen2.5:7b` passed the formal unusable-judge check (good > wrong on both answer metrics) but its scale made the 0.70 thresholds meaningless:
+
+| sample | faithfulness | answer_relevancy | context_precision | context_recall |
+|---|---|---|---|---|
+| good (every claim supported) | 0.60 | 0.59 | 1.00 | 1.00 |
+| wrong (unfaithful, off-topic) | 0.00 | 0.46 | 1.00 | 1.00 |
+| out-of-scope, honest refusal | 0.00 | 0.81 | 0.00 | 0.00 |
+
+A fully supported answer scored below both 0.70 thresholds, so criteria 1-2 would fire whatever the generator produced: the rule would measure the judge, not the generator. answer_relevancy also scored the honest weather refusal (0.81) above the correct technical answer (0.59): with MiniLM embeddings it measures topical overlap between the question and questions regenerated from the answer, not correctness. Response: move the judge to a larger hosted model (Groq) while keeping generation local.
+
+### Groq judge: staying inside the free tier
+Model: `llama-3.3-70b-versatile` (pending confirmation against the account's limits page): a different model family from the qwen generator, which also removes the self-judging bias of the local setup. Every call passes two gates (`src/llm/rate_limit.py`, `src/eval/groq_judge.py`):
+- **UsageBudget**: hard caps per run (default 40 calls) and per UTC day (calls and tokens), persisted in `.cache/groq_usage.json` so they hold across runs. A call is counted *before* it is sent, using a deliberately high token estimate (characters / 3 plus the 1,024-token output cap), then corrected to the provider-reported count. A call that could pass a cap is refused with `BudgetExceeded`, the run aborts, and partial results are not written. An unreadable usage file fails closed rather than resetting the count to zero.
+- **SlidingWindowRateLimiter**: a 60 s sliding window over requests and tokens; the call waits until it fits, rather than reacting to 429s.
+Both are sized to 50% of the account's free-tier limits, which have no defaults in code: the Groq judge refuses to start until RPM, RPD, TPM and TPD are copied from the Groq console into `.env`.
+
+Call minimisation: the Groq SDK's own retries are disabled (they would bypass the budget); ragas retries only transient errors (429, 5xx, connection, timeout), at most twice; `answer_relevancy` regenerates the question once instead of three times; only faithfulness and answer_relevancy are judged (the exact ID columns cover retrieval, and LLM context precision alone costs one call per retrieved chunk); and a ragas disk cache means an identical prompt is never sent twice. That brings the cost from about 11 calls per answer to about 3. Verified end to end with a fake Groq endpoint: every call ragas made passed through the budget, and a re-run made zero new calls. The same check showed that one unparseable judge response costs 4 calls (the original plus ragas' 3 format-fix retries); those are counted against the caps too.
+
+Privacy: with this judge, the questions, generated answers and retrieved code snippets are sent to Groq. The corpus is public open-source code; retrieval, ranking and generation stay local.
