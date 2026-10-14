@@ -28,7 +28,12 @@ class Settings(BaseSettings):
     groq_tpd: int | None = None
     groq_limit_fraction: float = 0.5
     groq_max_calls_per_run: int = 40
-    groq_max_output_tokens: int = 1024
+    # gpt-oss models reason before answering; reasoning tokens count toward the
+    # output cap and the rate limits, so effort is kept low, the reasoning is
+    # hidden from the parsed text, and the cap leaves room for both.
+    groq_max_output_tokens: int = 2048
+    groq_reasoning_effort: str = "low"
+    groq_reasoning_format: str = "hidden"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

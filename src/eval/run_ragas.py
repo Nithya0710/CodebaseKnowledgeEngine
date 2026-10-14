@@ -45,6 +45,11 @@ NAN_RATE_LIMIT = 0.25
 DECISION_FAITHFULNESS_MIN = 0.70
 DECISION_RELEVANCY_MIN = 0.70
 DECISION_MAX_STRIPPED = 1  # >= 2 stripped citations across the run triggers a switch
+# Gate (locked before results): the 0.70 thresholds bind only if the judge's
+# smoke test scored the known-good answer >= 0.9 faithfulness and >= 0.20
+# above the wrong answer on relevancy.
+GATE_GOOD_FAITHFULNESS_MIN = 0.9
+GATE_RELEVANCY_MARGIN = 0.20
 
 
 class PipelineRecord(BaseModel):
@@ -271,7 +276,24 @@ def judge_usability(good: dict, wrong: dict, metrics: list[str] = METRIC_COLUMNS
     return fired
 
 
-def decision_rule(rows: list[dict]) -> list[str]:
+def thresholds_binding(good: dict, wrong: dict) -> tuple[bool, str]:
+    """Decide from the judge smoke test whether RAGAS thresholds (criteria 1-2) may bind.
+
+    A judge that cannot score a fully supported answer highly, or barely
+    separates a good answer from an off-topic one on relevancy, would make
+    criteria 1-2 measure the judge instead of the generator.
+    """
+    gf, gr, wr = good.get("faithfulness"), good.get("answer_relevancy"), wrong.get("answer_relevancy")
+    if gf is None or gr is None or wr is None:
+        return False, f"smoke test incomplete (good faithfulness={gf}, relevancy good={gr} wrong={wr})"
+    if gf < GATE_GOOD_FAITHFULNESS_MIN:
+        return False, f"good-answer faithfulness {gf:.3f} < {GATE_GOOD_FAITHFULNESS_MIN}"
+    if gr - wr < GATE_RELEVANCY_MARGIN - 1e-9:  # tolerance: 0.70 - 0.50 is 0.1999... in floating point
+        return False, f"relevancy margin {gr - wr:.3f} < {GATE_RELEVANCY_MARGIN} (good {gr:.3f}, wrong {wr:.3f})"
+    return True, f"good faithfulness {gf:.3f} >= {GATE_GOOD_FAITHFULNESS_MIN}, relevancy margin {gr - wr:.3f} >= {GATE_RELEVANCY_MARGIN}"
+
+
+def decision_rule(rows: list[dict], apply_thresholds: bool = True) -> list[str]:
     """Apply the automated part of the locked Ollama-vs-Gemini rule (criteria 1-3).
 
     Criteria 1-2 average only answered questions that have gold chunks.
@@ -285,6 +307,11 @@ def decision_rule(rows: list[dict]) -> list[str]:
     """
     fired = []
     means = metric_means(rows, require_gold=True)
+    if not apply_thresholds:
+        stripped = sum(r["n_stripped_citations"] for r in rows)
+        if stripped > DECISION_MAX_STRIPPED:
+            fired.append(f"(3) {stripped} hallucinated citations stripped (switch at >= {DECISION_MAX_STRIPPED + 1})")
+        return fired
     if means["faithfulness"] is None or means["faithfulness"] < DECISION_FAITHFULNESS_MIN:
         fired.append(f"(1) mean faithfulness {means['faithfulness']} < {DECISION_FAITHFULNESS_MIN}")
     if means["answer_relevancy"] is None or means["answer_relevancy"] < DECISION_RELEVANCY_MIN:
@@ -346,6 +373,14 @@ def smoke_records() -> list[PipelineRecord]:
     ]
 
 
+def read_smoke_rows(path: Path) -> tuple[dict, dict]:
+    """Read the good and wrong rows of a saved smoke test, with metric cells as floats or None."""
+    with open(path, "r", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    parsed = [{m: (float(r[m]) if r.get(m) not in (None, "") else None) for m in METRIC_COLUMNS} for r in rows]
+    return parsed[0], parsed[1]
+
+
 def write_csv(rows: list[dict], path: Path) -> None:
     """Write score rows to CSV (empty cells for unscored metrics)."""
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -401,12 +436,19 @@ def main() -> None:
     logger.info(f"Saved {args.out}")
 
     if args.decision_rule:
-        fired = decision_rule(rows)
+        smoke_path = Path(f"eval/judge_smoke_test_{settings.ragas_judge_backend}.csv")
+        if not smoke_path.exists():
+            raise SystemExit(f"{smoke_path} not found: run --smoke with this judge first")
+        binding, why = thresholds_binding(*read_smoke_rows(smoke_path))
+        logger.info(f"Gate: RAGAS thresholds {'BINDING' if binding else 'NOT binding'} ({why})")
+        fired = decision_rule(rows, apply_thresholds=binding)
         if fired:
             logger.warning("Decision rule: SWITCH to Gemini. Fired: " + "; ".join(fired))
         else:
-            logger.info("Decision rule criteria 1-3: none fired (stay on Ollama unless criterion 4 fires)")
-        logger.info("Criterion 4 (payment-failure fabrication) must be checked by reading the answer.")
+            checked = "1-3" if binding else "3"
+            logger.info(f"Decision rule criteria {checked}: none fired (stay on Ollama unless criterion 4 fires)")
+        logger.info("Criterion 4 (payment-failure fabrication) must be checked by reading the answer"
+                    + ("." if binding else "; with the gate closed, each answer is also read for unsupported claims."))
 
 
 if __name__ == "__main__":

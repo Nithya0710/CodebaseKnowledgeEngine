@@ -92,6 +92,11 @@ def make_budgeted_chat_groq(budget: UsageBudget, limiter: SlidingWindowRateLimit
             _record_actual(self._budget, self._limiter, est, result)
             return result
 
+    reasoning = {}
+    if settings.groq_reasoning_effort:
+        reasoning["reasoning_effort"] = settings.groq_reasoning_effort
+    if settings.groq_reasoning_format:
+        reasoning["reasoning_format"] = settings.groq_reasoning_format
     chat = BudgetedChatGroq(
         model=settings.groq_judge_model,
         api_key=settings.groq_api_key,
@@ -99,6 +104,7 @@ def make_budgeted_chat_groq(budget: UsageBudget, limiter: SlidingWindowRateLimit
         max_tokens=settings.groq_max_output_tokens,
         max_retries=0,
         n=1,
+        **reasoning,
     )
     chat._budget = budget
     chat._limiter = limiter

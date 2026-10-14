@@ -16,7 +16,10 @@ from src.eval.run_ragas import (
     metric_means,
     records_to_dataset,
     score_records,
+    read_smoke_rows,
     smoke_records,
+    thresholds_binding,
+    write_csv,
 )
 
 
@@ -202,6 +205,48 @@ class TestDecisionRule:
         rows = [make_row(faithfulness=None, answer_relevancy=None)]
         fired = decision_rule(rows)
         assert any(f.startswith("(1)") for f in fired) and any(f.startswith("(2)") for f in fired)
+
+
+class TestThresholdGate:
+    def test_good_judge_opens_gate(self):
+        binding, _ = thresholds_binding({"faithfulness": 0.95, "answer_relevancy": 0.85},
+                                        {"faithfulness": 0.0, "answer_relevancy": 0.40})
+        assert binding
+
+    def test_low_good_faithfulness_closes_gate(self):
+        """The Ollama judge's actual smoke result (0.60) must close the gate."""
+        binding, why = thresholds_binding({"faithfulness": 0.60, "answer_relevancy": 0.59},
+                                          {"faithfulness": 0.0, "answer_relevancy": 0.46})
+        assert not binding and "faithfulness" in why
+
+    def test_small_relevancy_margin_closes_gate(self):
+        binding, why = thresholds_binding({"faithfulness": 1.0, "answer_relevancy": 0.59},
+                                          {"faithfulness": 0.0, "answer_relevancy": 0.46})
+        assert not binding and "margin" in why
+
+    def test_margin_exactly_at_limit_opens_gate(self):
+        binding, _ = thresholds_binding({"faithfulness": 0.9, "answer_relevancy": 0.70},
+                                        {"faithfulness": 0.0, "answer_relevancy": 0.50})
+        assert binding
+
+    def test_missing_scores_close_gate(self):
+        binding, why = thresholds_binding({"faithfulness": None, "answer_relevancy": 0.9},
+                                          {"faithfulness": 0.0, "answer_relevancy": 0.1})
+        assert not binding and "incomplete" in why
+
+    def test_gate_closed_ignores_ragas_thresholds_but_not_citations(self):
+        low = [make_row(faithfulness=0.1, answer_relevancy=0.1) for _ in range(4)]
+        assert decision_rule(low, apply_thresholds=False) == []
+        low[0]["n_stripped_citations"] = 2
+        assert [f[:3] for f in decision_rule(low, apply_thresholds=False)] == ["(3)"]
+
+    def test_smoke_csv_round_trip(self, tmp_path):
+        rows = [make_row(faithfulness=0.9, answer_relevancy=0.8),
+                make_row(faithfulness=0.0, answer_relevancy=None)]
+        path = tmp_path / "smoke.csv"
+        write_csv(rows, path)
+        good, wrong = read_smoke_rows(path)
+        assert good["faithfulness"] == 0.9 and wrong["answer_relevancy"] is None
 
 
 class TestSmokeRecords:

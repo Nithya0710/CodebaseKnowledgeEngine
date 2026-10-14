@@ -69,6 +69,10 @@ class TestBudgetedChatGroq:
         assert chat.max_retries == 0 and chat.n == 1
         assert chat.temperature <= 1e-8  # ChatGroq stores 0 as 1e-8; Groq requires > 0
 
+    def test_reasoning_kept_low_and_hidden(self, groq_settings, tmp_path):
+        chat, _ = make_chat(tmp_path)
+        assert chat.reasoning_effort == "low" and chat.reasoning_format == "hidden"
+
     def test_calls_are_counted_and_actual_tokens_recorded(self, groq_settings, tmp_path, calls):
         chat, budget = make_chat(tmp_path)
         asyncio.run(chat._agenerate([HumanMessage(content="hello")]))
