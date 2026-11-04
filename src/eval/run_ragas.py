@@ -42,6 +42,12 @@ BM25_CHUNKS_PATH = Path("data/bm25_chunks.json")
 JUDGE_RUN_CONFIG = dict(max_workers=1, timeout=600, max_retries=3, seed=42)
 
 NAN_RATE_LIMIT = 0.25
+# ragas' timeout covers a whole metric job, including time spent waiting in the
+# rate limiter. Faithfulness makes 2 calls per answer and each large call can
+# wait ~60 s for an empty minute, so 120 s timed out 4 of 5 jobs on the first
+# real run. Allow every call in a job (2 calls x up to 3 attempts) a full
+# window plus generous call time.
+GROQ_JOB_TIMEOUT_SECONDS = 900
 DECISION_FAITHFULNESS_MIN = 0.70
 DECISION_RELEVANCY_MIN = 0.70
 DECISION_MAX_STRIPPED = 1  # >= 2 stripped citations across the run triggers a switch
@@ -171,7 +177,7 @@ def build_judge() -> Judge:
             label=f"groq:{settings.groq_judge_model}",
             metrics=[Faithfulness(), ResponseRelevancy(strictness=1)],
             metric_names=["faithfulness", "answer_relevancy"],
-            run_config=RunConfig(max_workers=1, timeout=120, max_retries=2, max_wait=60,
+            run_config=RunConfig(max_workers=1, timeout=GROQ_JOB_TIMEOUT_SECONDS, max_retries=2, max_wait=60,
                                  exception_types=transient, seed=42),
             budget=budget,
             notes=["answer_relevancy uses strictness=1", "context metrics not scored (see id_precision/id_recall)"],

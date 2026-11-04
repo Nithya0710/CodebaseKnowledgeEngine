@@ -289,3 +289,13 @@ class TestGoldSet:
             corpus = {f"{c['repo_name']}:{c['file_path']}:{c['name']}:{c['start_line']}" for c in json.load(f)}
         missing = [cid for e in load_gold_set() for cid in e.ground_truth_context_chunk_ids if cid not in corpus]
         assert missing == []
+
+
+class TestGroqJobTimeout:
+    def test_timeout_covers_rate_limiter_waits_for_a_whole_faithfulness_job(self):
+        """Regression: a 120 s job timeout cancelled 4 of 5 faithfulness jobs
+        whose second call waited ~60 s in the rate limiter."""
+        from src.llm.rate_limit import WINDOW_SECONDS
+        calls_per_job, attempts_per_call, seconds_per_call = 2, 3, 30
+        worst_case = calls_per_job * attempts_per_call * (WINDOW_SECONDS + seconds_per_call)
+        assert run_ragas.GROQ_JOB_TIMEOUT_SECONDS >= worst_case
