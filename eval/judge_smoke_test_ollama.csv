@@ -1,0 +1,4 @@
+question,blocked,faithfulness,answer_relevancy,context_precision,context_recall,id_precision,id_recall,n_gold_chunks,n_valid_citations,n_stripped_citations,best_raw_ce_score,generation_model,judge
+"What does werkzeug's LimitedStream.on_exhausted method do, and when is it called?",False,0.6,0.5871416914676421,0.9999999999,1.0,1.0,1.0,3,0,0,,,ollama:qwen2.5:7b
+"What does werkzeug's LimitedStream.on_exhausted method do, and when is it called?",False,0.0,0.4623472740287144,0.9999999999,1.0,1.0,1.0,3,0,0,,,ollama:qwen2.5:7b
+What's the weather like in Bangalore today?,False,0.0,0.8092623889051502,0.0,0.0,0.0,,0,0,0,,,ollama:qwen2.5:7b

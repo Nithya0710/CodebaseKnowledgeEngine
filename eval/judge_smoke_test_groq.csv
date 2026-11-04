@@ -1,0 +1,4 @@
+question,blocked,faithfulness,answer_relevancy,context_precision,context_recall,id_precision,id_recall,n_gold_chunks,n_valid_citations,n_stripped_citations,best_raw_ce_score,generation_model,judge
+"What does werkzeug's LimitedStream.on_exhausted method do, and when is it called?",False,1.0,0.6285154363470409,,,1.0,1.0,3,0,0,,,groq:openai/gpt-oss-120b
+"What does werkzeug's LimitedStream.on_exhausted method do, and when is it called?",False,0.0,0.5595187563958679,,,1.0,1.0,3,0,0,,,groq:openai/gpt-oss-120b
+What's the weather like in Bangalore today?,False,1.0,0.0,,,0.0,,0,0,0,,,groq:openai/gpt-oss-120b

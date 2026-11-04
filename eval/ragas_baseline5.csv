@@ -1,0 +1,6 @@
+question,blocked,faithfulness,answer_relevancy,context_precision,context_recall,id_precision,id_recall,n_gold_chunks,n_valid_citations,n_stripped_citations,best_raw_ce_score,generation_model,judge
+Where is authentication middleware defined and what does it check?,False,0.7142857142857143,0.0,,,1.0,1.0,5,2,0,-4.370000839233398,qwen2.5:7b,groq:openai/gpt-oss-120b
+How does the rate limiter work and which files use it?,False,,0.7644357960970403,,,0.6,1.0,3,3,0,-7.72393274307251,qwen2.5:7b,groq:openai/gpt-oss-120b
+What happens when a payment fails? Trace the full code path.,False,,0.0,,,0.0,,0,0,0,-6.354800701141357,qwen2.5:7b,groq:openai/gpt-oss-120b
+Find all places add_url_rule is called and explain the contexts.,False,,0.6579770679768405,,,0.6,0.5,6,4,0,-1.2576824426651,qwen2.5:7b,groq:openai/gpt-oss-120b
+How does Flask handle routing for a URL?,False,,0.9050553715105573,,,0.4,0.6666666666666666,3,2,0,3.562413215637207,qwen2.5:7b,groq:openai/gpt-oss-120b
