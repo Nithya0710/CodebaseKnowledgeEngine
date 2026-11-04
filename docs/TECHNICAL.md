@@ -184,10 +184,10 @@ Files: `eval/pipeline_results_baseline5.json`, `eval/ragas_baseline5.csv`. All 5
 | question | faithfulness | relevancy | id_precision | id_recall | valid / stripped citations |
 |---|---|---|---|---|---|
 | auth middleware | 0.714 | 0.000 | 1.0 | 1.00 | 2 / 0 |
-| rate limiter | (timeout) | 0.764 | 0.6 | 1.00 | 3 / 0 |
-| payment failure | (timeout) | 0.000 | 0.0 | n/a | 0 / 0 |
-| add_url_rule call sites | (timeout) | 0.658 | 0.6 | 0.50 | 4 / 0 |
-| Flask routing | (timeout) | 0.905 | 0.4 | 0.67 | 2 / 0 |
+| rate limiter | 0.411 | 0.764 | 0.6 | 1.00 | 3 / 0 |
+| payment failure | 0.833 | 0.000 | 0.0 | n/a | 0 / 0 |
+| add_url_rule call sites | 0.500 | 0.658 | 0.6 | 0.50 | 4 / 0 |
+| Flask routing | 1.000 | 0.905 | 0.4 | 0.67 | 2 / 0 |
 
 **Criterion 3 (stripped citations): did not fire.** 0 hallucinated labels across 5 answers (13 valid). With qwen2.5:7b the `[S#]` scheme is followed reliably. One answer used a non-standard form (`[Citations: S1, S2, S3, S4, S5]`), which the validator neither counts nor strips.
 
@@ -199,4 +199,4 @@ Files: `eval/pipeline_results_baseline5.json`, `eval/ragas_baseline5.csv`. All 5
 - *add_url_rule call sites*: **two false call sites and the main one missed.** It lists `Scaffold.add_url_rule` (S4) as a call site, but that chunk is the definition, which `raise NotImplementedError`; its only `add_url_rule(` calls are docstring examples. It says `add_url_rule` "is called" in werkzeug's `PageMeta.__init__` (S5), whose code is `url_map.add(Rule(cls.url_rule, ...))`: no `add_url_rule` at all. It describes S2/S3 as methods that "are called" rather than the calls inside them, the same definition-vs-call-site confusion recorded on Day 5. It never mentions `Scaffold.route` (S1), whose body is `self.add_url_rule(rule, endpoint, f, **options)`, although that chunk was retrieved. Every one of these sentences carries a *valid* `[S#]` label: a concrete case of K10 (citation validity is not claim support).
 - *Flask routing*: faithful to its context (every detail of `url_for` it gives, `url_adapter`, `_anchor/_method/_scheme/_external`, `handle_url_build_error`, is in the `Flask.url_for` chunk), but it answers URL *building*, not routing, because retrieval returned `url_for` and `send_static_file` instead of `dispatch_request` (K3). A retrieval failure, not a generation one; relevancy 0.905 shows that metric cannot see it.
 
-**Summary of the evidence.** The judge-independent criteria (3 and 4) both pass: qwen2.5:7b cites in the right format and refuses honestly when nothing is relevant. Reading the answers shows generator errors in 2 of the 4 answerable questions (rate limiter: false premise accepted plus an unsupported claim; add_url_rule: two false call sites and a retrieved true one ignored), and a retrieval error in one (routing) that a different generator would not fix. n=5; faithfulness scores for 4 answers are pending the re-run.
+**Summary of the evidence.** The judge-independent criteria (3 and 4) both pass: qwen2.5:7b cites in the right format and refuses honestly when nothing is relevant. Reading the answers shows generator errors in 2 of the 4 answerable questions (rate limiter: false premise accepted plus an unsupported claim; add_url_rule: two false call sites and a retrieved true one ignored), and a retrieval error in one (routing) that a different generator would not fix. n=5. After the timeout fix, the re-run completed the 4 missing faithfulness scores with 4 new Groq calls (the first call of each job came from the cache). The judge agrees with the manual reading: the two answers that misread their context score lowest (rate limiter 0.41, add_url_rule 0.50), and the routing answer, faithful to the wrong chunks, scores 1.00. Mean faithfulness over the 4 questions with gold chunks: 0.656 (0.692 including payment). Decision (user, 2026-11-04): keep Ollama as the default and measure Gemini on the same 5 questions with the same judge before choosing (T6).
